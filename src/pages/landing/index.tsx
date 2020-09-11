@@ -28,8 +28,7 @@ function Landing(){
                     className="hero"
                 />
 
-                <div className="
-                r">
+                <div className="buttons-container">
                    
                     <Link to="/login" className="study">
                         <img src={studyIcon} alt="Estudar"/>
