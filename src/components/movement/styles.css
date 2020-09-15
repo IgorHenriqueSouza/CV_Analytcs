@@ -1,10 +1,18 @@
-.page-header {
+.movement .perfil {
+    margin-top: -45px;
+    margin-left: 114rem;
+}
+.movement .sair {
+    margin-top: -27px;
+    margin-left: 123rem;
+}
+.movement {
     display:flex;
     flex-direction: column;
     background-color: black;
 }
 
-.page-header .top-bar-container {
+.movement .top-bar-container {
     width: 90%;
     margin: 0 auto;
     display:flex;
@@ -15,33 +23,33 @@
     padding: 1.6rem 0;
 }
 
-.page-header .top-bar-container a {
+.movement .top-bar-container a {
     height: 3.2rem;
     transition: opacity 0.2s;
 }
-.page-header .top-bar-container a:hover{
+.movement .top-bar-container a:hover{
     opacity: 0.6;
 }
 
-.page-header .top-bar-container > img{
+.movement .top-bar-container > img{
     height: 1.6rem;
 }
 
-.page-header .header-content {
+.movement .header-content {
     width: 90%;
     margin:  0 auto;
     position: relative;
     margin: 3.2rem auto;
 }
 
-.page-header .header-content strong {
+.movement .header-content strong {
     font: 700 3.6rem Archivo;
     line-height: 4.2rem;
     color: var(--color-title-in-primary);
 
 }
 
-.page-header .header-content p {
+.movement .header-content p {
     max-width: 30rem;
     font-size: 1.6rem;
     line-height: 2.6rem;
@@ -51,15 +59,15 @@
 }
 
 @media (min-width: 700px) {
-    .page-header {
+    .movement {
         height: 340px;
     }
 
-    .page-header .top-bar-container {
+    .movement .top-bar-container {
         max-width: 1100px;
     }
 
-    .page-header .header-content {
+    .movement .header-content {
         flex: 1;
         max-width: 740px;
         margin: 0 auto;
@@ -70,7 +78,7 @@
         align-items: flex-start;
     }
 
-    .page-header .header-content strong {
+    .movement .header-content strong {
         max-width: 350px;
     }
 }

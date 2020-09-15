@@ -1,5 +1,5 @@
 import React from 'react';
-import PageHeader from '../../components/PageHeader';
+import Movement from '../../components/movement';
 import { Link } from 'react-router-dom';
 
 
@@ -10,7 +10,7 @@ function Vagas() {
     return (
 
         <div id="vagas" className="container">
-             <PageHeader title="CV Analitcs" />
+             <Movement title="CV Analitcs" />
              
              <main>
                     <legend>Vagas Disponiveis</legend>
