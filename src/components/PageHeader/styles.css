@@ -3,6 +3,14 @@
     flex-direction: column;
     background-color: black;
 }
+.page-header .perfil {
+    margin-top: -45px;
+    margin-left: 114rem;
+}
+.page-header .sair {
+    margin-top: -27px;
+    margin-left: 123rem;
+}
 
 .page-header .top-bar-container {
     width: 90%;
