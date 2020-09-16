@@ -2,9 +2,15 @@
     margin-top: -45px;
     margin-left: 114rem;
 }
+.movement .perfil a {
+    text-decoration: none;
+}
 .movement .sair {
     margin-top: -27px;
     margin-left: 123rem;
+}
+.movement .sair a {
+    text-decoration: none;
 }
 .movement {
     display:flex;
