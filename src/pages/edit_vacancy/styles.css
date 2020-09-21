@@ -1,0 +1,28 @@
+#editar {
+    width: 100vw;
+    height: 100vh;
+}
+#editar main legend {
+    text-align: center;
+    margin-top: -5.5rem;
+    font-size: 3.8rem;
+
+}
+
+
+@media (min-width: 700px) {
+    #editar {
+        max-width: 100%;
+    }
+    #editar main {
+        padding: 3.2rem 0;
+        background: var(--color-box-base);
+        width: 100%;
+        max-width: 74rem;
+        border-radius: 0.8rem;
+        margin: -3.2rem auto 3.2rem;
+        padding-top: 6.4rem;
+        overflow: hidden;
+
+    }
+}
