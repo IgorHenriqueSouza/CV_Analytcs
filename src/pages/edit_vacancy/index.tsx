@@ -16,7 +16,7 @@ function Edit() {
 
             <main>
                 
-                    <legend>Editar Vaga</legend>
+                    <h2> Editar Vaga </h2>
                     <Input
                         name="titulo"
                         label="titulo" 

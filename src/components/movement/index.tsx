@@ -18,8 +18,8 @@ const Movement: React.FC<movementProps> = (props) => {
                     </Link>
                 </div>
              <div className="perfil">
-                    <Link to="/">
-                        Perfil
+                    <Link to="/painel">
+                         Perfil
                     </Link>
                 </div>
                 <div className="sair">
