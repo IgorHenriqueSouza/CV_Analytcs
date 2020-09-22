@@ -6,7 +6,11 @@
     text-align: center;
     margin-top: -5.5rem;
     font-size: 3.8rem;
-
+}
+#editar main h2 {
+    text-align: center;
+    margin-top: 5.5rem;
+    margin-bottom:2.5rem;
 }
 
 
@@ -15,7 +19,8 @@
         max-width: 100%;
     }
     #editar main {
-        padding: 3.2rem 0;
+        
+        padding: 3.2rem;
         background: var(--color-box-base);
         width: 100%;
         max-width: 74rem;

@@ -8,13 +8,14 @@ function Edit() {
     const [descricao, setDescricao ] = useState('');
     const [local, setLocal] = useState('');
     const [conhecimento, setConhecimento] = useState('');
+    const [nível, setNivel] = useState('');
 
     return (
         <div id="editar" className="container">
             <Movement title="CV Analitcs" />
 
             <main>
-                <fieldset>
+                
                     <legend>Editar Vaga</legend>
                     <Input
                         name="titulo"
@@ -34,13 +35,24 @@ function Edit() {
                         value={local} 
                         onChange={(e) => { setLocal(e.target.value) }}
                     />
+                    
+                    <h2>Conhecimentos Necessários</h2>
+                    
                     <Input
                         name="conhecimento"
                         label="Conhecimento" 
                         value={conhecimento} 
                         onChange={(e) => { setConhecimento(e.target.value) }}
                     />
-                </fieldset>
+
+                    <Input
+                        name="nivel"
+                        label="Nível de conhecimento" 
+                        value={nível} 
+                        onChange={(e) => { setNivel(e.target.value) }}
+                    />
+                    
+                
 
             </main>
 
