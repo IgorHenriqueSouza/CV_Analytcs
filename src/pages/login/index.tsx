@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
 
 import Input from '../../components/Input';
@@ -7,6 +7,23 @@ import Input from '../../components/Input';
 
 import './styles.css';
 
+function EnviarLogin(e: { preventDefault: () => void; }){
+    const headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT fefege...'
+    }
+    
+    axios.post('https://tcc-unip-api.herokuapp.com/login', null, {
+        headers: headers
+        })
+        .then((response) => {
+            alert (response);
+        })
+        .catch((error) => {
+        
+        })
+} 
+    
 
 function Login() {
     const [login, setLogin] = useState('');
@@ -30,6 +47,10 @@ function Login() {
                     value={Senha} 
                     onChange={(e) => { setSenha(e.target.value) }} 
                 />
+
+                <button type="submit">
+                    Salvar cadastro
+                </button>
                 
             
         </main>
