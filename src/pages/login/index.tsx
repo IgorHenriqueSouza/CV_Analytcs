@@ -20,7 +20,7 @@ function EnviarLogin(e: { preventDefault: () => void; }){
             alert (response);
         })
         .catch((error) => {
-        
+
         })
 } 
     
@@ -48,8 +48,8 @@ function Login() {
                     onChange={(e) => { setSenha(e.target.value) }} 
                 />
 
-                <button type="submit">
-                    Salvar cadastro
+                <button type="submit" onClick= {EnviarLogin}>
+                    Entrar
                 </button>
                 
             

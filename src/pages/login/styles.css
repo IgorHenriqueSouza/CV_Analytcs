@@ -19,6 +19,10 @@ body, input, button, textarea {
     font-size: 20px;
     margin-left: 20px;
 }
+#page-teacher-list main button {
+    margin-top: 3.5rem;
+    margin-left: 66rem;
+}
 
 
 @media (min-width: 700px) {
