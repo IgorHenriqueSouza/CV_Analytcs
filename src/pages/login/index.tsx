@@ -6,6 +6,8 @@ import Input from '../../components/Input';
 
 import './styles.css';
 
+
+
 function Login() {
 	const [login, setLogin] = useState('');
 	const [senha, setSenha] = useState('');
@@ -21,6 +23,7 @@ function Login() {
 		});
 	};
 
+
 	return (
 		<div id='page-teacher-list' className='container'>
 			<PageHeader title='Cv Analitcs - Login' />
@@ -28,7 +31,7 @@ function Login() {
 			<main>
 				<Input
 					name='logar'
-					label='E-mail'
+					label='CPF'
 					value={login}
 					onChange={e => {
 						setLogin(e.target.value);
@@ -36,6 +39,7 @@ function Login() {
 				/>
 
 				<Input
+					type="text"
 					name='Senha'
 					label='Senha'
 					value={senha}
@@ -50,6 +54,6 @@ function Login() {
 			</main>
 		</div>
 	);
-}
+} 
 
 export default Login;
