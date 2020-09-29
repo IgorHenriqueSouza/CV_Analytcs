@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
@@ -8,169 +9,105 @@ import Input from '../../components/Input';
 import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 
-
 function TeacherForm() {
-    const [name, setName] = useState('');
-    const [sobrenome, setsobrenome] = useState('');
-    const [email, setemail] = useState('');
-    const [senha, setsenha] = useState('');
-    const [idade, setidade] = useState('');
-    const [cpf, setcpf] = useState('');
-    const [contato, setcontato] = useState('');
-    const [objetivos, setobjetivos] = useState('');
-    const [estadocivil, setestadocivil] = useState('');
-    const [tecnologia1, setTec1] = useState ('');
-    const [tecnologia2, setTec2] = useState('');
-    
+	const [nome, setNome] = useState('');
+	const [sobrenome, setSobrenome] = useState('');
+	const [cpf, setCpf] = useState('');
+	const [mail, setMail] = useState('');
+	const [senha, setSenha] = useState('');
+	const [senhaConfirm, setSenhaConfirm] = useState('');
 
-   
- /*    function handleCreateClass(e: FormEvent) {
-        e.preventDefault();
-            post('classes',{
-            name,
-            sobrenome,
-            cpf,
-            idade,
-            email,
-            senha,
-            contato,
-            objetivos,
-            cost: Number(cost),
-            schedule: scheduleItems
+	const EnviarCadastro = () => {
+		let cad = {
+			nome: nome,
+			sobrenome: sobrenome,
+			cpf: cpf,
+			senha: senha,
+			senhaConfirm: senhaConfirm,
+		};
 
-        }).then(() => {
-            alert('Cadastro realizado com sucesso!')
-        }).catch(() => {
-            alert('Erro no cadastro!!');
-        })
-        console.log(handleCreateClass);
+		axios
+			.post('https://tcc-unip-api.herokuapp.com/cadastro', cad)
+			.then(function (response) {
+				//Redirect painel do recrutador
+				console.log(response.data);
+			})
+			.catch(function (error) {
+				// handle error
+				alert(error.response.data.message);
+			});
+	};
 
-    } */
+	return (
+		<div id='page-teacher-form' className='container'>
+			<PageHeader title='O Primeiro passo é preencher todos os campos do cadastro.' />
+			<main>
+				<fieldset>
+					<legend>Criação de Usuário</legend>
+					<Input
+						name='cpf'
+						label='CPF'
+						value={cpf}
+						onChange={e => {
+							setCpf(e.target.value);
+						}}
+					/>
+					<Input
+						name='name'
+						label='Nome'
+						value={nome}
+						onChange={e => {
+							setNome(e.target.value);
+						}}
+					/>
+					<Input
+						name='sobrenome'
+						label='Sobrenome'
+						value={sobrenome}
+						onChange={e => {
+							setSobrenome(e.target.value);
+						}}
+					/>
 
-    return (
-        <div id="page-teacher-form" className="container">
-        <PageHeader 
-            title="O Primeiro passo é preencher todos os campos do cadastro."
-            
-        />
-        <main>
-            <fieldset>
-                <legend>Dados pessoais</legend>
+					<Input
+						name='email'
+						label='E-mail'
+						value={mail}
+						onChange={e => {
+							setMail(e.target.value);
+						}}
+					/>
+					<Input
+						name='senha'
+						label='Senha'
+						value={senha}
+						onChange={e => {
+							setSenha(e.target.value);
+						}}
+					/>
+					<Input
+						name='senha2'
+						label='Confirmação de Senha'
+						value={senhaConfirm}
+						onChange={e => {
+							setSenhaConfirm(e.target.value);
+						}}
+					/>
+				</fieldset>
 
-                <Input 
-                    name="name" 
-                    label="Nome" 
-                    value={name} 
-                    onChange={(e) => { setName(e.target.value) }} 
-                />
-                <Input 
-                    name="sobrenome" 
-                    label="Sobrenome" 
-                    value={sobrenome} 
-                    onChange={(e) => { setsobrenome(e.target.value) }} 
-                />
-                <Input 
-                    name="cpf" 
-                    label="CPF" 
-                    value={cpf} 
-                    onChange={(e) => { setcpf(e.target.value) }} 
-                />
-                <Input 
-                    name="dt_nascimento" 
-                    label="Data de Nascimento" 
-                    value={idade} 
-                    onChange={(e) => { setidade(e.target.value) }} 
-                />
-                <Input 
-                    name="email" 
-                    label="E-mail" 
-                    value={email} 
-                    onChange={(e) => { setemail(e.target.value) }} 
-                />
-                <Input 
-                    name="senha" 
-                    label="Senha" 
-                    value={senha} 
-                    onChange={(e) => { setsenha(e.target.value) }} 
-                />
-                <Input 
-                    name="contato" 
-                    label="Telefone" 
-                    value={contato} 
-                    onChange={(e) => { setcontato(e.target.value) }} 
-                />
-                <Textarea 
-                    name="objetivos" 
-                    label="objetivos profissionais" 
-                    value={objetivos} 
-                    onChange={(e) => { setobjetivos(e.target.value) }} 
-
-                />              
-                 <Select 
-                    name="estadocivil" 
-                    label="Estado Civil" 
-                    value={estadocivil}
-                    onChange={(e) => { setestadocivil(e.target.value)}}
-                    options={[
-                         { value: 'solteiro(a)', label: 'Solteiro' },
-                         { value: 'casado (a)', label: 'Casado' },
-                         { value: 'divorciado(a)', label: 'Divorciado' },
-                         { value: 'viuvo(a)', label: 'viuvo(a)' },
-                         
-                    ]}
-                />     
-            </fieldset>
-
-            <fieldset>
-
-                <legend>Selecione suas principais técnologias</legend>
-                <Select 
-                    name="tecnologia1" 
-                    label="1° técnologia" 
-                    value={tecnologia1}
-                    onChange={(e) => { setTec1(e.target.value)}}
-                    options={[
-                         { value: 'Javascript', label: 'Javascript' },
-                         { value: 'php', label: 'PHP' },
-                         { value: 'Python', label: 'Python' },
-                         { value: 'Banco de dados', label: 'Banco de dados' },
-                         { value: 'Scrum', label: 'Scrum' },
-                         
-                    ]}
-                />
-                <Select 
-                    name="tecnologia2" 
-                    label="2° técnologia" 
-                    value={tecnologia2}
-                    onChange={(e) => { setTec2(e.target.value)}}
-                    options={[
-                         { value: 'Javascript', label: 'Javascript' },
-                         { value: 'php', label: 'PHP' },
-                         { value: 'Python', label: 'Python' },
-                         { value: 'Banco de dados', label: 'Banco de dados' },
-                         { value: 'Scrum', label: 'Scrum' },
-                         
-                    ]}
-                />
-
-                                 
-            </fieldset>
-
-            <footer>
-                <p>
-                    <img src={warningIcon} alt="Aviso importante"/>
-                    Importante! <br />
-                    Preencha todos os dados
-                </p>
-                <button type="submit">
-                    Salvar cadastro
-                </button>
-            </footer>
-            
-        </main>
-    </div>
-    )
-
+				<footer>
+					<p>
+						<img src={warningIcon} alt='Aviso importante' />
+						Importante! <br />
+						Preencha todos os dados
+					</p>
+					<button type='submit' onClick={EnviarCadastro}>
+						Enviar Cadastro
+					</button>
+				</footer>
+			</main>
+		</div>
+	);
 }
 
 export default TeacherForm;

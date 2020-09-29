@@ -6,8 +6,6 @@ import Input from '../../components/Input';
 
 import './styles.css';
 
-
-
 function Login() {
 	const [login, setLogin] = useState('');
 	const [senha, setSenha] = useState('');
@@ -16,13 +14,22 @@ function Login() {
 		//
 		const token = btoa(`${login}:${senha}`);
 
-		const res = axios.post('https://tcc-unip-api.herokuapp.com/login', null, {
-			headers: {
-				Authorization: `Basic ${token}`,
-			},
-		});
-	};
+		axios
+			.post('https://tcc-unip-api.herokuapp.com/login', null, {
+				headers: {
+					Authorization: `Basic ${token}`,
+				},
+			})
+			.then(function (response) {
+				//Redirect
 
+				console.log(response.data);
+			})
+			.catch(function (error) {
+				// handle error
+				alert(error.response.data);
+			});
+	};
 
 	return (
 		<div id='page-teacher-list' className='container'>
@@ -33,13 +40,14 @@ function Login() {
 					name='logar'
 					label='CPF'
 					value={login}
+					type='number'
 					onChange={e => {
 						setLogin(e.target.value);
 					}}
 				/>
 
 				<Input
-					type="password"
+					type='password'
 					name='Senha'
 					label='Senha'
 					value={senha}
@@ -54,6 +62,6 @@ function Login() {
 			</main>
 		</div>
 	);
-} 
+}
 
 export default Login;
