@@ -39,7 +39,7 @@ function Login() {
 				/>
 
 				<Input
-					type="text"
+					type="password"
 					name='Senha'
 					label='Senha'
 					value={senha}
