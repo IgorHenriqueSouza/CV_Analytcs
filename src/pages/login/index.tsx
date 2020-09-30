@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
 
+
 import Input from '../../components/Input';
 
 import './styles.css';
+
 
 function Login() {
 	const [cpf, setCpf] = useState('');
@@ -21,6 +23,8 @@ function Login() {
 				},
 			})
 			.then(function (response) {
+				localStorage.setItem('token', response.data.token);
+                window.location.reload();
 				//Redirect
 
 				console.log(response.data);
@@ -30,7 +34,7 @@ function Login() {
 				alert(error.response.data);
 			});
 	};
-
+	
 	return (
 		<div id='page-teacher-form' className='container'>
 			<PageHeader title='Cv Analitcs - Login' />
@@ -82,7 +86,7 @@ function Login() {
 
 					<footer>
 						<p></p>
-						<button type='submit'>Entrar</button>
+						<button type='submit'>Entrar </button>
 					</footer>
 				</form>
 			</main>
