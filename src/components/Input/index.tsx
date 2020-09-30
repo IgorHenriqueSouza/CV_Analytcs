@@ -1,19 +1,28 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
+import MaskedInput from 'react-text-mask';
 
 import './styles.css';
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputProps {
 	name: string;
 	label: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, name, ...rest }) => {
-	return (
-		<div className='input-block'>
-			<label htmlFor={name}>{label}</label>
-			<input id={name} {...rest} />
-		</div>
-	);
+const Input = ({ label, name, ...rest }) => {
+	if (rest.mask)
+		return (
+			<div className='input-block'>
+				<label htmlFor={name}>{label}</label>
+				<MaskedInput id={name} {...rest} />
+			</div>
+		);
+	else
+		return (
+			<div className='input-block'>
+				<label htmlFor={name}>{label}</label>
+				<input id={name} {...rest} />
+			</div>
+		);
 };
 
 export default Input;

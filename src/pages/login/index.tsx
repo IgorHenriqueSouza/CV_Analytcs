@@ -7,12 +7,12 @@ import Input from '../../components/Input';
 import './styles.css';
 
 function Login() {
-	const [login, setLogin] = useState('');
+	const [cpf, setCpf] = useState('');
 	const [senha, setSenha] = useState('');
 
-	const EnviarLogin = () => {
-		//
-		const token = btoa(`${login}:${senha}`);
+	const EnviarLogin = (e: React.FormEvent) => {
+		e.preventDefault();
+		const token = btoa(`${cpf}:${senha}`);
 
 		axios
 			.post('https://tcc-unip-api.herokuapp.com/login', null, {
@@ -32,33 +32,59 @@ function Login() {
 	};
 
 	return (
-		<div id='page-teacher-list' className='container'>
+		<div id='page-teacher-form' className='container'>
 			<PageHeader title='Cv Analitcs - Login' />
 
 			<main>
-				<Input
-					name='logar'
-					label='CPF'
-					value={login}
-					type='number'
-					onChange={e => {
-						setLogin(e.target.value);
-					}}
-				/>
+				<form onSubmit={Login}>
+					<fieldset>
+						<legend>Login na Aplicação</legend>
+						<Input
+							required
+							name='cpf'
+							label='CPF'
+							value={cpf}
+							placeholder='Digite seu cpf'
+							minLength={14}
+							mask={[
+								/\d/,
+								/\d/,
+								/\d/,
+								'.',
+								/\d/,
+								/\d/,
+								/\d/,
+								'.',
+								/\d/,
+								/\d/,
+								/\d/,
+								'-',
+								/\d/,
+								/\d/,
+							]}
+							guide={false}
+							onChange={e => {
+								setCpf(e.target.value);
+							}}
+						/>
 
-				<Input
-					type='password'
-					name='Senha'
-					label='Senha'
-					value={senha}
-					onChange={e => {
-						setSenha(e.target.value);
-					}}
-				/>
+						<Input
+							name='senha'
+							label='Senha'
+							value={senha}
+							placeholder='*****'
+							type={'password'}
+							onChange={e => {
+								setSenha(e.target.value);
+							}}
+						/>
+					</fieldset>
 
-				<button type='submit' onClick={EnviarLogin}>
-					Entrar
-				</button>
+					<footer>
+						<p></p>
+						<button type='submit'>Entrar</button>
+					</footer>
+				</form>
 			</main>
 		</div>
 	);
