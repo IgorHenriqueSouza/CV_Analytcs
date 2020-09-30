@@ -36,7 +36,7 @@ function Login() {
 			<PageHeader title='Cv Analitcs - Login' />
 
 			<main>
-				<form onSubmit={Login}>
+				<form onSubmit={EnviarLogin}>
 					<fieldset>
 						<legend>Login na Aplicação</legend>
 						<Input
