@@ -6,6 +6,7 @@ import TeacherForm from './pages/cadastro';
 import Vagas from './pages/vagas'
 import recruter_panel from './pages/recruter_panel';
 import edit_vacancy from './pages/edit_vacancy';
+import Manage_user from './pages/manage_users';
 
 
 function Routes(){
@@ -17,6 +18,7 @@ function Routes(){
             <Route path="/vagas" component={Vagas} />
             <Route path="/painel" component={recruter_panel} />
             <Route path="/editar" component={edit_vacancy} />
+            <Route path="/gerenciarUser" component={Manage_user} />
         </BrowserRouter>
     );
 }

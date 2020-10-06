@@ -17,6 +17,7 @@ function TeacherForm() {
 
 	const EnviarCadastro = (e: React.FormEvent) => {
 		e.preventDefault();
+		
 
 		let cad = {
 			nome: nome,

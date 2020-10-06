@@ -16,14 +16,14 @@ function recruter_panel() {
                     Visualização dos Resultados
                 </Link>
 
-                <Link to="/" className="modules">
+                <Link to="/gerenciarUser" className="modules">
                     <img src={backIcon} alt="IR"/>
                     Usuários
                 </Link>
 
-                <Link to="/" className="modules">
+                <Link to="/vagas" className="modules">
                     <img src={backIcon} alt="IR"/>
-                    GErenciar Vagas
+                    Gerenciar Vagas
                 </Link>
 
                 <Link to="/" className="modules">
