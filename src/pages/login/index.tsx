@@ -26,12 +26,11 @@ function Login() {
 				localStorage.setItem('token', response.data.token);
                 window.location.reload();
 				//Redirect
-
-				console.log(response.data);
 			})
 			.catch(function (error) {
 				// handle error
-				alert(error.response.data);
+				alert(error.response.data.message);
+				
 			});
 	};
 	

@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Movement from '../../components/movement';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Redirect, Link, Route } from 'react-router-dom';
 
 
 import './styles.css';
 
+
 function Vagas() {
+    var redirect = false;
+    useEffect ( () => {
+        
+        var token = localStorage.getItem ('token');
+        axios.get('https://tcc-unip-api.herokuapp.com/vagas?token=' + token)
+        .then ((response) => {
+            
+
+        } )
+        .catch ((error) => {
+            
+            alert(error.response.data.message);
+             redirect = true
+
+        })
+            
+    });
+
+    if (redirect)
+    return <Redirect to='/' />;
     
     return (
 
