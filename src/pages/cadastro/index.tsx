@@ -117,7 +117,7 @@ function TeacherForm() {
 							name='senha'
 							label='Senha'
 							value={senha}
-							placeholder='*****'
+							placeholder='Digite sua senha'
 							type={'password'}
 							onChange={e => {
 								setSenha(e.target.value);
@@ -127,7 +127,7 @@ function TeacherForm() {
 							name='senha2'
 							label='Confirmação de Senha'
 							value={senhaConfirm}
-							placeholder='*****'
+							placeholder='Confirme sua senha'
 							type={'password'}
 							onChange={e => {
 								setSenhaConfirm(e.target.value);
