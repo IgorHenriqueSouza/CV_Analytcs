@@ -1,41 +1,43 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
-
+import { useParams } from 'react-router-dom';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
 import Input from '../../components/Input';
 
-function TeacherForm() {
+function CadastroUser() {
 	const [nome, setNome] = useState('');
 	const [sobrenome, setSobrenome] = useState('');
 	const [cpf, setCpf] = useState('');
 	const [mail, setMail] = useState('');
 	const [senha, setSenha] = useState('');
 	const [senhaConfirm, setSenhaConfirm] = useState('');
+	const { tipo }: any = useParams();
 
 	const EnviarCadastro = (e: React.FormEvent) => {
 		e.preventDefault();
-		
 
 		let cad = {
-			nome: nome,
+			nome: null,
 			sobrenome: sobrenome,
 			cpf: cpf,
 			senha: senha,
 			senhaConfirm: senhaConfirm,
+			tipo: tipo,
 		};
 
 		axios
-			.post('https://tcc-unip-api.herokuapp.com/cadastro', cad)
+			.post(process.env.REACT_APP_API_URL + '/cadastro', cad)
 			.then(function (response) {
 				//Redirect painel do recrutador
-				console.log(response.data);
+				alert(console.log('tru'));
 			})
 			.catch(function (error) {
 				// handle error
-				alert(error.response.data.message);
+				if (error.response) alert(error.response.data.message);
+				else alert('Erro ao contactar servidor');
 			});
 	};
 
@@ -119,6 +121,7 @@ function TeacherForm() {
 							value={senha}
 							placeholder='Digite sua senha'
 							type={'password'}
+							minLength={8}
 							onChange={e => {
 								setSenha(e.target.value);
 							}}
@@ -129,6 +132,7 @@ function TeacherForm() {
 							value={senhaConfirm}
 							placeholder='Confirme sua senha'
 							type={'password'}
+							minLength={8}
 							onChange={e => {
 								setSenhaConfirm(e.target.value);
 							}}
@@ -149,4 +153,4 @@ function TeacherForm() {
 	);
 }
 
-export default TeacherForm;
+export default CadastroUser;

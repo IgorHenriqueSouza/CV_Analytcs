@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
 
-
 import Input from '../../components/Input';
 
 import './styles.css';
-
 
 function Login() {
 	const [cpf, setCpf] = useState('');
@@ -17,23 +15,22 @@ function Login() {
 		const token = btoa(`${cpf}:${senha}`);
 
 		axios
-			.post('https://tcc-unip-api.herokuapp.com/login', null, {
+			.post(process.env.REACT_APP_API_URL + '/login', null, {
 				headers: {
 					Authorization: `Basic ${token}`,
 				},
 			})
 			.then(function (response) {
 				localStorage.setItem('token', response.data.token);
-                window.location.reload();
+				window.location.reload();
 				//Redirect
 			})
 			.catch(function (error) {
 				// handle error
 				alert(error.response.data.message);
-				
 			});
 	};
-	
+
 	return (
 		<div id='page-teacher-form' className='container'>
 			<PageHeader title='Cv Analitcs - Login' />
