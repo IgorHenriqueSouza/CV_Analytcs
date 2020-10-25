@@ -1,3 +1,11 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "saveAndRunExt": {
+    "commands": [
+        {
+            "match": "\\.",
+            "isShellCommand": false,
+            "cmd": "workbench.action.debug.restart"
+        }
+    ]
 }

@@ -32,12 +32,15 @@ function CadastroUser() {
 			.post(process.env.REACT_APP_API_URL + '/cadastro', cad)
 			.then(function (response) {
 				//Redirect painel do recrutador
-				alert(console.log('tru'));
+				let teste = response;
 			})
 			.catch(function (error) {
 				// handle error
+
 				if (error.response) alert(error.response.data.message);
-				else alert('Erro ao contactar servidor');
+				else {
+					alert('Erro ao contactar servidor');
+				}
 			});
 	};
 
