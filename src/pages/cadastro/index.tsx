@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
@@ -15,13 +15,20 @@ function CadastroUser() {
 	const [senha, setSenha] = useState('');
 	const [senhaConfirm, setSenhaConfirm] = useState('');
 	const { tipo }: any = useParams();
+	const history = useHistory();
 
 	const EnviarCadastro = (e: React.FormEvent) => {
 		e.preventDefault();
 
+		if (senha !== senhaConfirm) {
+			alert('As senhas não batem');
+			return;
+		}
+
 		let cad = {
-			nome: null,
+			nome: nome,
 			sobrenome: sobrenome,
+			email: mail,
 			cpf: cpf,
 			senha: senha,
 			senhaConfirm: senhaConfirm,
@@ -31,8 +38,10 @@ function CadastroUser() {
 		axios
 			.post(process.env.REACT_APP_API_URL + '/cadastro', cad)
 			.then(function (response) {
-				//Redirect painel do recrutador
-				let teste = response;
+				if (response.status === 200) {
+					alert('Cadastro bem sucedido, Prossiga com o login na aplicação');
+					history.push('/login');
+				}
 			})
 			.catch(function (error) {
 				// handle error

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
+import { useHistory } from 'react-router-dom';
 
 import Input from '../../components/Input';
 
@@ -9,6 +10,7 @@ import './styles.css';
 function Login() {
 	const [cpf, setCpf] = useState('');
 	const [senha, setSenha] = useState('');
+	let history = useHistory();
 
 	const EnviarLogin = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -21,13 +23,17 @@ function Login() {
 				},
 			})
 			.then(function (response) {
-				localStorage.setItem('token', response.data.token);
-				window.location.reload();
-				//Redirect
+				if (response.status === 200) {
+					localStorage.setItem('token', response.data.token);
+
+					history.push('/preQuestionario');
+				}
 			})
 			.catch(function (error) {
-				// handle error
-				alert(error.response.data.message);
+				if (error.response) alert(error.response.data.message);
+				else {
+					alert('Erro ao contactar servidor');
+				}
 			});
 	};
 
