@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
+import Navbar from '../../components/Navbar';
 import { useParams, useHistory } from 'react-router-dom';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
@@ -34,7 +35,10 @@ function PreQuestionairo() {
 
 	return (
 		<div id='page-teacher-form' className='container'>
-			<PageHeader title='Por favor, preencha os dados abaixo para que possamos te conhecer melhor.' />
+			<Navbar
+				title='CV Analitcs'
+				description='Por favor, preencha os dados abaixo para que possamos te conhecer melhor.'
+			/>
 			<main>
 				<form onSubmit={EnviarFormulario}>
 					<footer>

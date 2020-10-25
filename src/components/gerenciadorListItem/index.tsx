@@ -3,42 +3,27 @@ import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-const GerenciadorListItem = ({
-	label,
-	description,
-	location,
-	id,
-	type,
-	...rest
-}) => {
-	let url = 'editarVaga/' + id;
+const GerenciadorListItem = ({ nome, descricao, local, id, tipo, ...rest }) => {
+	let url = tipo === 'vaga' ? 'editarVaga/' + id : 'editarUser/' + id;
 
-	if (type == 'vaga')
-		return (
-			<div>
-				<div className='courses-container'>
-					<div className='course'>
-						<div className='course-preview'>
-							<h5>{label}</h5>
-							<small className=''>{location}</small>
-						</div>
-						<div className='course-info'>
-							<small>{description}</small>
-							<Link to={url}>
-								<button className='btn'>Editar</button>
-							</Link>
-						</div>
+	return (
+		<div>
+			<div className='courses-container'>
+				<div className='course'>
+					<div className='course-preview'>
+						<h5>{nome}</h5>
+						<small className=''>{local}</small>
+					</div>
+					<div className='course-info'>
+						<small>{descricao}</small>
+						<Link to={url}>
+							<button className='btn'>Editar</button>
+						</Link>
 					</div>
 				</div>
 			</div>
-		);
-	else return <div></div>;
-	// 	return (
-	// 		<div className='input-block'>
-	// 			<label htmlFor={name}>{label}</label>
-	// 			<input id={name} {...rest} />
-	// 		</div>
-	// 	);
+		</div>
+	);
 };
 
 export default GerenciadorListItem;

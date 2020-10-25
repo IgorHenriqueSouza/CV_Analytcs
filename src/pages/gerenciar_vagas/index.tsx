@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import Movement from '../../components/movement';
+import Navbar from '../../components/Navbar';
 import axios from 'axios';
 import { Redirect, Link, Route } from 'react-router-dom';
-import GerenciadorListItem from '../../components/gerenciadorListItem';
+import GerenciadorListItem from '../../components/GerenciadorListItem';
 import './styles.css';
 
-function Vagas() {
+function GerenciarVagas() {
 	var token = localStorage.getItem('token');
 
 	useEffect(() => {
@@ -20,29 +20,29 @@ function Vagas() {
 
 	return (
 		<div id='vagas' className='container'>
-			<Movement title='CV Analitcs' />
+			<Navbar title='CV Analitcs' />
 
 			<main>
 				<legend>Vagas Disponiveis</legend>
 
 				<div className='jobs'>
 					<GerenciadorListItem
-						label='Desenvolvedor .NET'
-						description='Desenvolvedor experiente .NET com 4 a 6 anos de experiência na área, preferencialmente com skills de UI/UX e soft skills'
-						location='São Paulo - Brasil'
+						nome='Desenvolvedor .NET'
+						descricao='Desenvolvedor experiente .NET com 4 a 6 anos de experiência na área, preferencialmente com skills de UI/UX e soft skills'
+						local='São Paulo - Brasil'
 						id='1'
-						type='vaga'
+						tipo='vaga'
 					></GerenciadorListItem>
 					<GerenciadorListItem
-						label='Desenvolvedor Java'
-						description='Desenvolvedor experiente Java com 2 a 4 anos de experiência na área, preferencialmente com skills de back-end e soft skills'
-						location='Rio de Janeiro - Brasil'
+						nome='Desenvolvedor Java'
+						descricao='Desenvolvedor experiente Java com 2 a 4 anos de experiência na área, preferencialmente com skills de back-end e soft skills'
+						local='Rio de Janeiro - Brasil'
 						id='1'
-						type='vaga'
+						tipo='vaga'
 					></GerenciadorListItem>
 				</div>
 			</main>
 		</div>
 	);
 }
-export default Vagas;
+export default GerenciarVagas;

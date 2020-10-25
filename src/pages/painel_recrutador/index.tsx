@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import backIcon from '../../assets/images/icons/back.svg';
-import Movement from '../../components/movement';
+import Navbar from '../../components/Navbar';
 import './styles.css';
 
 function PainelRecrutador() {
 	return (
 		<div id='panel' className='container'>
-			<Movement title='CV Analitcs' />
+			<Navbar title='CV Analitcs' />
 			<main>
 				<legend>Painel do Recrutador</legend>
 				<div className='painel'>

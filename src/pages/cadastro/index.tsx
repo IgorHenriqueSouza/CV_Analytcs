@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import PageHeader from '../../components/PageHeader';
 import { useParams, useHistory } from 'react-router-dom';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
 import Input from '../../components/Input';
+import PageHeader from '../../components/PageHeader';
 
 function CadastroUser() {
 	const [nome, setNome] = useState('');
@@ -44,8 +44,6 @@ function CadastroUser() {
 				}
 			})
 			.catch(function (error) {
-				// handle error
-
 				if (error.response) alert(error.response.data.message);
 				else {
 					alert('Erro ao contactar servidor');

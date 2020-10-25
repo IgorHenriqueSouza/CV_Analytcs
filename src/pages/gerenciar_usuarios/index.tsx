@@ -1,13 +1,13 @@
 import React from 'react';
-import Movement from '../../components/movement';
+import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
 
-function GerenciarUsuario() {
+function GerenciarUsuarios() {
 	return (
 		<div id='manege-user' className='container'>
-			<Movement title='CV Analitcs' />
+			<Navbar title='CV Analitcs' />
 
 			<main>
 				<legend>Gerenciar Usuários</legend>
@@ -20,4 +20,4 @@ function GerenciarUsuario() {
 	);
 }
 
-export default GerenciarUsuario;
+export default GerenciarUsuarios;

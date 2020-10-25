@@ -5,33 +5,39 @@ import backIcon from '../../assets/images/icons/back.svg';
 
 import './styles.css';
 
-interface pageHeaderProps {
+interface navbarProps {
 	title: string;
 	description?: string;
 }
-
-const PageHeader: React.FC<pageHeaderProps> = props => {
+const Navbar: React.FC<navbarProps> = props => {
 	let history = useHistory();
 
 	function handleClick(e) {
 		history.goBack();
 	}
 
+	function logout(e) {
+		localStorage.removeItem('token');
+		history.push('/');
+	}
+
 	return (
-		<header className='page-header'>
+		<header className='movement'>
 			<div className='top-bar-container'>
 				<div onClick={handleClick}>
 					<img src={backIcon} alt='Voltar' />
 				</div>
 			</div>
+			<div className='perfil'>
+				<Link to='/painel'>Perfil</Link>
+			</div>
+			<div className='sair'>
+				<a onClick={logout}>Sair</a>
+			</div>
 			<div className='header-content'>
-				<strong>{props.title}</strong>
-				{props.description && <p>{props.description}</p>}
-
-				{props.children}
+				{props.description && <strong>{props.description}</strong>}
 			</div>
 		</header>
 	);
 };
-
-export default PageHeader;
+export default Navbar;

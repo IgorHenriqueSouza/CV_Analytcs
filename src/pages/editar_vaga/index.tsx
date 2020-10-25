@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Movement from '../../components/movement';
+import Navbar from '../../components/Navbar';
 import Input from '../../components/Input';
 import './styles.css';
 
@@ -12,13 +12,13 @@ function EditarVaga() {
 
 	return (
 		<div id='editar' className='container'>
-			<Movement title='CV Analitcs' />
+			<Navbar title='CV Analitcs' />
 
 			<main>
 				<h2> Editar Vaga </h2>
 				<Input
-					name='titulo'
-					label='titulo'
+					name='nome'
+					label='Nome'
 					value={titulo}
 					onChange={e => {
 						setTitulo(e.target.value);
