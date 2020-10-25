@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PageHeader from '../../components/PageHeader';
 import { useHistory } from 'react-router-dom';
+import jwt from 'jwt-decode';
 
 import Input from '../../components/Input';
 
 import './styles.css';
 
 function Login() {
+	const history = useHistory();
+	const token = localStorage.getItem('token');
+
+	if (token) {
+		let user = jwt(token);
+		if (Date.now() < user.exp * 1000) {
+			history.push('/preQuestionario');
+		}
+	}
+
 	const [cpf, setCpf] = useState('');
 	const [senha, setSenha] = useState('');
-	let history = useHistory();
-
 	const EnviarLogin = (e: React.FormEvent) => {
 		e.preventDefault();
 		const token = btoa(`${cpf}:${senha}`);
@@ -32,7 +41,7 @@ function Login() {
 			.catch(function (error) {
 				if (error.response) alert(error.response.data.message);
 				else {
-					alert('Erro ao contactar servidor');
+					alert(error.message);
 				}
 			});
 	};

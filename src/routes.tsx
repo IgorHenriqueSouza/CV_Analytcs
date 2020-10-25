@@ -17,7 +17,7 @@ function Routes() {
 			<Route path='/cadastro/:tipo' component={CadastroUser} />
 			<Route path='/preQuestionario' component={PreQuestionairo} />
 			<Route path='/vagas' component={Vagas} />
-			<Route path='/editarVaga' component={EditarVaga} />
+			<Route path='/editarVaga/:id' component={EditarVaga} />
 			<Route path='/painelRecrutador' component={PainelRecrutador} />
 			<Route path='/gerenciarUsuario' component={GerenciarUsuario} />
 		</BrowserRouter>

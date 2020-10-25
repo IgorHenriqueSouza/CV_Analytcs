@@ -34,7 +34,7 @@ function PreQuestionairo() {
 
 	return (
 		<div id='page-teacher-form' className='container'>
-			<PageHeader title='O Primeiro passo é preencher todos os campos do cadastro.' />
+			<PageHeader title='Por favor, preencha os dados abaixo para que possamos te conhecer melhor.' />
 			<main>
 				<form onSubmit={EnviarFormulario}>
 					<footer>
@@ -43,7 +43,7 @@ function PreQuestionairo() {
 							Importante! <br />
 							Preencha todos os dados
 						</p>
-						<button type='submit'>Enviar Cadastro</button>
+						<button type='submit'>Enviar Formulário</button>
 					</footer>
 				</form>
 			</main>
