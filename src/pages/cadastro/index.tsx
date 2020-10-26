@@ -52,7 +52,7 @@ function CadastroUser() {
 	};
 
 	return (
-		<div id='page-teacher-form' className='container'>
+		<div id='painel-form' className='container'>
 			<PageHeader title='O Primeiro passo é preencher todos os campos do cadastro.' />
 			<main>
 				<form onSubmit={EnviarCadastro}>

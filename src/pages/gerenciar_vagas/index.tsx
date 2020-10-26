@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
-import { Redirect, Link, Route } from 'react-router-dom';
+import { Redirect, Link, Route, useHistory } from 'react-router-dom';
 import GerenciadorListItem from '../../components/GerenciadorListItem';
 import './styles.css';
 
 function GerenciarVagas() {
-	var token = localStorage.getItem('token');
+	let token = localStorage.getItem('token');
+	let history = useHistory();
+
+	let editarVaga = id => {
+		history.push('/editarVaga/' + id);
+	};
 
 	useEffect(() => {
 		axios
@@ -26,6 +31,9 @@ function GerenciarVagas() {
 				<legend>Vagas Disponiveis</legend>
 
 				<div className='jobs'>
+					<button className='btn-main' onClick={() => editarVaga(null)}>
+						Adicionar
+					</button>
 					<GerenciadorListItem
 						nome='Desenvolvedor .NET'
 						descricao='Desenvolvedor experiente .NET com 4 a 6 anos de experiência na área, preferencialmente com skills de UI/UX e soft skills'

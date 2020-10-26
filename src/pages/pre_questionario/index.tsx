@@ -124,7 +124,7 @@ function PreQuestionairo() {
 
 	if (!show) {
 		return (
-			<div id='page-teacher-form' className='container'>
+			<div id='painel-form' className='container'>
 				<Navbar title='CV Analitcs' description='' />
 				<main>
 					<form onSubmit={EnviarFormulario}></form>
@@ -133,7 +133,7 @@ function PreQuestionairo() {
 		);
 	} else {
 		return (
-			<div id='page-teacher-form' className='container'>
+			<div id='painel-form' className='container'>
 				<Navbar
 					title='CV Analitcs'
 					description='Por favor, preencha os dados abaixo para que possamos te conhecer melhor.'

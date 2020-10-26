@@ -11,14 +11,13 @@ import './styles.css';
 function Login() {
 	const history = useHistory();
 	const token = localStorage.getItem('token');
+	const [cpf, setCpf] = useState('');
+	const [senha, setSenha] = useState('');
 
 	if (token) {
-		let user = jwt(token);
 		localStorage.removeItem('token');
 	}
 
-	const [cpf, setCpf] = useState('');
-	const [senha, setSenha] = useState('');
 	const EnviarLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const token = btoa(`${cpf}:${senha}`);
@@ -32,8 +31,13 @@ function Login() {
 			.then(function (response) {
 				if (response.status === 200) {
 					localStorage.setItem('token', response.data.token);
+					let user = jwt(response.data.token);
 
-					history.push('/preQuestionario');
+					if (user.type.includes('candidato')) {
+						history.push('/preQuestionario');
+					} else if (user.type.includes('recrutador')) {
+						history.push('/painelRecrutador');
+					}
 				}
 			})
 			.catch(function (error) {
@@ -45,7 +49,7 @@ function Login() {
 	};
 
 	return (
-		<div id='page-teacher-form' className='container'>
+		<div id='painel-form' className='container'>
 			<PageHeader title='Cv Analitcs - Login' />
 
 			<main>

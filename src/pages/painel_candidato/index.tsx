@@ -6,7 +6,7 @@ import './styles.css';
 
 function PainelCandidato() {
 	return (
-		<div id='panel' className='container'>
+		<div id='painel-form' className='container'>
 			<Navbar title='CV Analitcs' description='' />
 			<main>
 				<legend></legend>

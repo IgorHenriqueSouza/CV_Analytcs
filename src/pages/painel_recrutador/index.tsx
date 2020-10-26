@@ -7,27 +7,23 @@ import './styles.css';
 function PainelRecrutador() {
 	return (
 		<div id='panel' className='container'>
-			<Navbar title='CV Analitcs' />
+			<Navbar title='CV Analitcs' description='Painel do Recrutador' />
 			<main>
-				<legend>Painel do Recrutador</legend>
+				<legend></legend>
 				<div className='painel'>
 					<Link to='/' className='modules'>
-						<img src={backIcon} alt='IR' />
 						Visualização dos Resultados
 					</Link>
 
 					<Link to='/gerenciarUser' className='modules'>
-						<img src={backIcon} alt='IR' />
 						Usuários
 					</Link>
 
 					<Link to='/vagas' className='modules'>
-						<img src={backIcon} alt='IR' />
 						Gerenciar Vagas
 					</Link>
 
 					<Link to='/' className='modules'>
-						<img src={backIcon} alt='IR' />
 						Gerenciar Provas
 					</Link>
 				</div>
