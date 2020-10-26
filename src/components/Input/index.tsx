@@ -16,7 +16,18 @@ const Input = ({ label, name, ...rest }) => {
 				<MaskedInput id={name} {...rest} />
 			</div>
 		);
-	else
+	else if (rest.options) {
+		return (
+			<div className='input-block'>
+				<label htmlFor={name}>{label}</label>
+				<select id={name} {...rest}>
+					{rest.options.map(opt => (
+						<option value={opt.value}>{opt.label ?? opt.value}</option>
+					))}
+				</select>
+			</div>
+		);
+	} else
 		return (
 			<div className='input-block'>
 				<label htmlFor={name}>{label}</label>

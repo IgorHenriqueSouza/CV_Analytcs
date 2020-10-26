@@ -132,6 +132,7 @@ function CadastroUser() {
 							placeholder='Digite sua senha'
 							type={'password'}
 							minLength={8}
+							maxLength={48}
 							onChange={e => {
 								setSenha(e.target.value);
 							}}
@@ -143,6 +144,7 @@ function CadastroUser() {
 							placeholder='Confirme sua senha'
 							type={'password'}
 							minLength={8}
+							maxLength={48}
 							onChange={e => {
 								setSenhaConfirm(e.target.value);
 							}}

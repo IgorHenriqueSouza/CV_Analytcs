@@ -19,6 +19,7 @@ function Routes() {
 			<Route path='/vagas' component={GerenciarVagas} />
 			<Route path='/editarVaga/:id' component={EditarVaga} />
 			<Route path='/painelRecrutador' component={PainelRecrutador} />
+			<Route path='/painelCandidato' component={PainelRecrutador} />
 			<Route path='/gerenciarUsuario' component={GerenciarUsuarios} />
 		</BrowserRouter>
 	);

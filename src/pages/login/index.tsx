@@ -61,6 +61,7 @@ function Login() {
 							value={cpf}
 							placeholder='Digite seu cpf'
 							minLength={14}
+							maxLength={14}
 							mask={[
 								/\d/,
 								/\d/,
@@ -86,6 +87,8 @@ function Login() {
 						<Input
 							name='senha'
 							label='Senha'
+							minLengh={8}
+							maxLengh={48}
 							value={senha}
 							placeholder='*****'
 							type={'password'}
