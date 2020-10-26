@@ -14,18 +14,16 @@ function Login() {
 
 	if (token) {
 		let user = jwt(token);
-		if (Date.now() < user.exp * 1000) {
-			history.push('/preQuestionario');
-		}
+		localStorage.removeItem('token');
 	}
 
 	const [cpf, setCpf] = useState('');
 	const [senha, setSenha] = useState('');
-	const EnviarLogin = (e: React.FormEvent) => {
+	const EnviarLogin = async (e: React.FormEvent) => {
 		e.preventDefault();
 		const token = btoa(`${cpf}:${senha}`);
 
-		axios
+		await axios
 			.post(process.env.REACT_APP_API_URL + '/login', null, {
 				headers: {
 					Authorization: `Basic ${token}`,
@@ -87,8 +85,8 @@ function Login() {
 						<Input
 							name='senha'
 							label='Senha'
-							minLengh={8}
-							maxLengh={48}
+							minlengh={8}
+							maxlengh={48}
 							value={senha}
 							placeholder='*****'
 							type={'password'}

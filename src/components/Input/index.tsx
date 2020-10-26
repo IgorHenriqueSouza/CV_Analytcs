@@ -21,6 +21,7 @@ const Input = ({ label, name, ...rest }) => {
 			<div className='input-block'>
 				<label htmlFor={name}>{label}</label>
 				<select id={name} {...rest}>
+					<option value=''></option>
 					{rest.options.map(opt => (
 						<option value={opt.value}>{opt.label ?? opt.value}</option>
 					))}

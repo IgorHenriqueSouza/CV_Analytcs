@@ -6,6 +6,7 @@ import CadastroUser from './pages/cadastro';
 import GerenciarVagas from './pages/gerenciar_vagas';
 import GerenciarUsuarios from './pages/gerenciar_usuarios';
 import PainelRecrutador from './pages/painel_recrutador';
+import PainelCandidato from './pages/painel_candidato';
 import EditarVaga from './pages/editar_vaga';
 import PreQuestionairo from './pages/pre_questionario';
 
@@ -19,7 +20,7 @@ function Routes() {
 			<Route path='/vagas' component={GerenciarVagas} />
 			<Route path='/editarVaga/:id' component={EditarVaga} />
 			<Route path='/painelRecrutador' component={PainelRecrutador} />
-			<Route path='/painelCandidato' component={PainelRecrutador} />
+			<Route path='/painelCandidato' component={PainelCandidato} />
 			<Route path='/gerenciarUsuario' component={GerenciarUsuarios} />
 		</BrowserRouter>
 	);

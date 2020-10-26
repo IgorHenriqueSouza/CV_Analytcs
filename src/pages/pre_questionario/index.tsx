@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import jwt from 'jwt-decode';
 import PageHeader from '../../components/PageHeader';
@@ -18,59 +18,119 @@ function PreQuestionairo() {
 	const [js, setJs] = useState('');
 	const [bd, setBd] = useState('');
 	const [php, setPhp] = useState('');
+	const [show, setShown] = useState(false);
+	const [niveis, setNiveis] = useState([]);
 
-	const verifica = async () => {
-		if (token) {
-			let credentials = jwt(token);
-			if (credentials.user) {
-				await axios
-					.get(
-						process.env.REACT_APP_API_URL +
-							'/prequestionario/verifica?token=' +
-							token
-					)
-					.then(function (response) {
-						if (response.status === 200) {
-							return true;
-						}
-					});
-			}
-		}
-
-		return false;
-	};
-
-	const EnviarFormulario = (e: React.FormEvent) => {
+	const EnviarFormulario = async (e: React.FormEvent) => {
 		e.preventDefault();
-		let post = {};
+		let post = {
+			anos: anos,
+			scrum: scrum,
+			js: js,
+			bd: bd,
+			php: php,
+		};
 
-		axios
-			.post(process.env.REACT_APP_API_URL + '/cadastro', post)
+		await axios
+			.post(
+				process.env.REACT_APP_API_URL + '/prequestionario?token=' + token,
+				post
+			)
 			.then(function (response) {
 				if (response.status === 200) {
-					alert('Dados enviados com sucesso!');
+					alert(response.data.message);
 					history.push('/painel_candidato');
 				}
 			})
-			.catch(function (error) {
+			.catch(error => {
 				if (error.response) {
-					if (error.status === 401 || error.status === 403) {
+					if (error.response.status === 403) {
 						localStorage.removeItem('token');
 						history.push('/');
-					} else alert(error.response.data.message);
+					} else if (error.response.status === 401) {
+						history.goBack();
+					}
+
+					alert(error.response.data.message);
 				} else {
-					alert('Erro ao contactar servidor');
+					alert(error.message);
 				}
 			});
 	};
 
-	let verificado = verifica();
+	useEffect(() => {
+		const isDone = async () => {
+			let result = null;
 
-	if (!verificado) {
-		localStorage.removeItem('token');
-		history.push('/');
-		alert('Usuário não autorizado!');
-		return <div></div>;
+			await axios
+				.get(
+					process.env.REACT_APP_API_URL +
+						'/prequestionario/isdone?token=' +
+						token
+				)
+				.then(function (response) {
+					if (response.status === 200) {
+						result = response.data.result;
+					}
+				})
+				.catch(error => {
+					if (error.response) {
+						if (error.response.status === 403) {
+							localStorage.removeItem('token');
+							history.push('/');
+						} else if (error.response.status === 401) {
+							history.goBack();
+						}
+
+						alert(error.response.data.message);
+					} else {
+						alert(error.message);
+					}
+				});
+
+			return result;
+		};
+
+		const fetchNiveis = async () => {
+			let result = [];
+
+			await axios
+				.get(
+					process.env.REACT_APP_API_URL +
+						'/dadosAuxiliares/niveis?token=' +
+						token
+				)
+				.then(function (response) {
+					if (response.status === 200) {
+						result = response.data;
+					}
+				});
+
+			return result;
+		};
+
+		isDone().then(res => {
+			if (res === false) {
+				setShown(true);
+			} else if (res === true) {
+				history.push('/painelCandidato');
+			}
+		});
+
+		fetchNiveis().then(niveis => {
+			setNiveis(niveis);
+		});
+	}, []);
+
+	if (!show) {
+		return (
+			<div id='page-teacher-form' className='container'>
+				<Navbar title='CV Analitcs' description='' />
+				<main>
+					<form onSubmit={EnviarFormulario}></form>
+				</main>
+			</div>
+		);
 	} else {
 		return (
 			<div id='page-teacher-form' className='container'>
@@ -89,14 +149,58 @@ function PreQuestionairo() {
 								placeholder='Escolha um valor'
 								value={anos}
 								options={[
-									{ value: 'Um ano' },
-									{ value: 'Dois anos' },
-									{ value: 'Três anos' },
-									{ value: 'Quatro anos' },
-									{ value: 'Cinco anos ou mais' },
+									{ value: '1', label: 'Um ano' },
+									{ value: '2', label: 'Dois anos' },
+									{ value: '3', label: 'Três anos' },
+									{ value: '4', label: 'Quatro anos' },
+									{ value: '5', label: 'Cinco anos ou mais' },
 								]}
 								onChange={e => {
 									setAnos(e.target.value);
+								}}
+							/>
+							<Input
+								required
+								name='scrum'
+								label='Qual sua familiaridade com o framework ágil scrum?'
+								placeholder='Escolha um valor'
+								value={scrum}
+								options={niveis}
+								onChange={e => {
+									setScrum(e.target.value);
+								}}
+							/>
+							<Input
+								required
+								name='bd'
+								label='Qual sua familiaridade com banco de dados?'
+								placeholder='Escolha um valor'
+								value={bd}
+								options={niveis}
+								onChange={e => {
+									setBd(e.target.value);
+								}}
+							/>
+							<Input
+								required
+								name='js'
+								label='Qual sua familiaridade com JavaScript?'
+								placeholder='Escolha um valor'
+								value={js}
+								options={niveis}
+								onChange={e => {
+									setJs(e.target.value);
+								}}
+							/>
+							<Input
+								required
+								name='php'
+								label='Qual sua familiaridade com PHP?'
+								placeholder='Escolha um valor'
+								value={php}
+								options={niveis}
+								onChange={e => {
+									setPhp(e.target.value);
 								}}
 							/>
 						</fieldset>

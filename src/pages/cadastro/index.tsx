@@ -17,7 +17,7 @@ function CadastroUser() {
 	const { tipo }: any = useParams();
 	const history = useHistory();
 
-	const EnviarCadastro = (e: React.FormEvent) => {
+	const EnviarCadastro = async (e: React.FormEvent) => {
 		e.preventDefault();
 
 		if (senha !== senhaConfirm) {
@@ -35,11 +35,11 @@ function CadastroUser() {
 			tipo: tipo,
 		};
 
-		axios
+		await axios
 			.post(process.env.REACT_APP_API_URL + '/cadastro', cad)
 			.then(function (response) {
 				if (response.status === 200) {
-					alert('Cadastro bem sucedido, Prossiga com o login na aplicação');
+					alert(response.data.message);
 					history.push('/login');
 				}
 			})
