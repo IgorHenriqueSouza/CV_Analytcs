@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import axios from 'axios';
 import { Redirect, Link, Route, useHistory } from 'react-router-dom';
@@ -8,46 +8,103 @@ import './styles.css';
 function GerenciarVagas() {
 	let token = localStorage.getItem('token');
 	let history = useHistory();
+	let perPage = 3;
+
+	const [vagas, setVaga] = useState<any[]>([]);
+	const [filteredVagas, setFiltered] = useState<any[]>([]);
 
 	let editarVaga = id => {
 		history.push('/editarVaga/' + id);
 	};
 
+	let getPagination = vagas => {
+		let pages = Math.ceil(vagas.length / perPage);
+		if (pages > 1) return Array.from(new Array(pages), (x, i) => i + 1);
+		return [];
+	};
+
+	let paginateFilter = pg => {
+		return vagas.slice(pg * perPage - perPage, pg * perPage);
+	};
+
 	useEffect(() => {
-		axios
-			.get(process.env.REACT_APP_API_URL + '/vagas?token=' + token)
-			.then(response => {})
-			.catch(error => {
-				//alert(error.response.data.message);
-				//window.location.replace('/');
-			});
-	});
+		let fetchVagas = async () => {
+			let output = [];
+
+			await axios
+				.get(process.env.REACT_APP_API_URL + '/vagas?token=' + token)
+				.then(response => {
+					if (response.status === 200) {
+						output = response.data;
+					}
+				})
+				.catch(error => {
+					if (error.response) {
+						if (error.response.status === 403) {
+							localStorage.removeItem('token');
+							history.push('/');
+						} else if (error.response.status === 401) {
+							history.goBack();
+						}
+
+						alert(error.response.data.message);
+					} else {
+						alert(error.message);
+					}
+				});
+
+			return output;
+		};
+
+		fetchVagas().then(res => {
+			setVaga(res);
+			setFiltered(res.slice(0, perPage));
+		});
+	}, []);
 
 	return (
 		<div id='vagas' className='container'>
-			<Navbar title='CV Analitcs' />
+			<Navbar title='CV Analitcs' description='Gerenciador de Vagas' />
 
 			<main>
-				<legend>Vagas Disponiveis</legend>
+				<legend></legend>
 
 				<div className='jobs'>
 					<button className='btn-main' onClick={() => editarVaga(null)}>
 						Adicionar
 					</button>
-					<GerenciadorListItem
-						nome='Desenvolvedor .NET'
-						descricao='Desenvolvedor experiente .NET com 4 a 6 anos de experiência na área, preferencialmente com skills de UI/UX e soft skills'
-						local='São Paulo - Brasil'
-						id='1'
-						tipo='vaga'
-					></GerenciadorListItem>
-					<GerenciadorListItem
-						nome='Desenvolvedor Java'
-						descricao='Desenvolvedor experiente Java com 2 a 4 anos de experiência na área, preferencialmente com skills de back-end e soft skills'
-						local='Rio de Janeiro - Brasil'
-						id='1'
-						tipo='vaga'
-					></GerenciadorListItem>
+					{vagas.length === 0 ? (
+						<small
+							className='loading'
+							style={{
+								marginTop: '20px',
+								display: 'inline',
+								textAlign: 'center',
+							}}
+						>
+							Carregando...
+						</small>
+					) : (
+						filteredVagas.map(vaga => (
+							<GerenciadorListItem
+								nome={vaga.nome}
+								descricao={vaga.descricao}
+								local={vaga.local}
+								id={vaga.id}
+								tipo='vaga'
+							></GerenciadorListItem>
+						))
+					)}
+					<div className='pagination'>
+						{getPagination(vagas).map((x, i) => (
+							<button
+								className='btn-page'
+								onClick={() => setFiltered(paginateFilter(x))}
+							>
+								{x}
+							</button>
+						))}
+					</div>
 				</div>
 			</main>
 		</div>
