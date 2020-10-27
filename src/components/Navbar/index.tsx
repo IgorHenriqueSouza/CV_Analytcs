@@ -11,6 +11,7 @@ interface navbarProps {
 }
 const Navbar: React.FC<navbarProps> = props => {
 	let history = useHistory();
+	let token = localStorage.getItem('token');
 
 	function handleClick(e) {
 		history.goBack();
@@ -29,7 +30,7 @@ const Navbar: React.FC<navbarProps> = props => {
 				</div>
 			</div>
 			<div className='perfil'>
-				<Link to='/painel'>Perfil</Link>
+				<Link to={'/perfil?token=' + token}>Perfil</Link>
 			</div>
 			<div className='sair'>
 				<a onClick={logout}>Sair</a>

@@ -1,35 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import jwt from 'jwt-decode';
 import backIcon from '../../assets/images/icons/back.svg';
 import Navbar from '../../components/Navbar';
 import './styles.css';
 
 function PainelRecrutador() {
-	return (
-		<div id='panel' className='container'>
-			<Navbar title='CV Analitcs' description='Painel do Recrutador' />
-			<main>
-				<legend></legend>
-				<div className='painel'>
-					<Link to='/' className='modules'>
-						Visualização dos Resultados
-					</Link>
+	let token = localStorage.getItem('token');
+	let user = jwt(token);
 
-					<Link to='/gerenciarUser' className='modules'>
-						Usuários
-					</Link>
+	if (user.type.includes('candidato')) {
+		alert('Acesso não autorizado!');
+		return (
+			<div id='panel' className='container'>
+				<Navbar title='CV Analitcs' description='Painel do Recrutador' />
+				<main></main>
+			</div>
+		);
+	} else {
+		return (
+			<div id='panel' className='container'>
+				<Navbar title='CV Analitcs' description='Painel do Recrutador' />
+				<main>
+					<legend></legend>
+					<div className='painel'>
+						<Link to='/' className='modules'>
+							Visualização dos Resultados
+						</Link>
 
-					<Link to='/vagas' className='modules'>
-						Gerenciar Vagas
-					</Link>
+						<Link to='/usuarios' className='modules'>
+							Gerenciar Usuários
+						</Link>
 
-					<Link to='/' className='modules'>
-						Gerenciar Provas
-					</Link>
-				</div>
-			</main>
-		</div>
-	);
+						<Link to='/vagas' className='modules'>
+							Gerenciar Vagas
+						</Link>
+					</div>
+				</main>
+			</div>
+		);
+	}
 }
 
 export default PainelRecrutador;

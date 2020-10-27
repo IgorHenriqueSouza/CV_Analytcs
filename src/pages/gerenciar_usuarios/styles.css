@@ -1,65 +1,72 @@
-#manege-user {
-    width: 100vw;
-    height: 100vh;
+#vagas {
+	width: 100vw;
+	height: 100vh;
 }
-#manege-user main legend {
-    text-align: center;
-    margin-top: -5.5rem;
-    font-size: 3.8rem;
-
-}
-
-#manege-user main {
-    margin: 3.2rem auto;
-    width: 90%;
-}
-#manege-user main label {
-    font-size: 20px;
-    margin-left: 20px;
+#vagas main legend {
+	text-align: center;
+	margin-top: -5.5rem;
+	font-size: 3.8rem;
 }
 
-.gerenciarVaga {
-    display: grid;
-    margin-top: 3rem;
+#vagas main {
+	margin: 3.2rem auto;
+	width: 90%;
 }
-.gerenciarVaga a {
-    
-    height: 10.4rem;
-    border-radius: 0.8rem;
-    margin: 10px;
-    
-    font: 700 2.0rem Archivo;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-
-    text-decoration: none;
-    color: black;
-
-    transition: background-color 0.2s;
+#vagas main label {
+	font-size: 20px;
+	margin-left: 20px;
 }
 
-.gerenciarVaga a.user1{
-    background:#DCDCDC;
-    
-}
-.gerenciarVaga a:first-child {
-    margin-right: 1.6rem;
+.jobs {
+	display: grid;
+	margin-top: 3rem;
 }
 
 @media (min-width: 700px) {
-    #manege-user {
-        max-width: 100%;
-    }
-    #manege-user main {
-        padding: 3.2rem 0;
-        background: var(--color-box-base);
-        width: 100%;
-        max-width: 74rem;
-        border-radius: 0.8rem;
-        margin: -3.2rem auto 3.2rem;
-        padding-top: 6.4rem;
-        overflow: hidden;
+	#vagas {
+		max-width: 100%;
+	}
+	#vagas main {
+		padding: 3.2rem 0;
+		background: var(--color-box-base);
+		width: 100%;
+		max-width: 74rem;
+		border-radius: 0.8rem;
+		margin: -3.2rem auto 3.2rem;
+		padding-top: 6.4rem;
+		overflow: hidden;
+	}
+}
 
-    }
+.btn-main {
+	background-color: #2a265f;
+	width: 95%;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	border: 0px;
+	border-radius: 25px;
+	box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+.pagination {
+	text-align: center;
+}
+.btn-page {
+	background-color: #2a265f;
+	width: 40px;
+	margin-left: 2.5%;
+	margin-right: 2.5%;
+	display: inline-block;
+	border: 0px;
+	border-radius: 25px;
+	box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	padding: 12px 15px 12px 15px;
+	cursor: pointer;
 }

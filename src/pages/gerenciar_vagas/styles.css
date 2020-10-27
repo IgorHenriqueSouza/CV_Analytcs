@@ -57,7 +57,7 @@
 }
 .btn-page {
 	background-color: #2a265f;
-	width: 40px;
+	width: 40px !important;
 	margin-left: 2.5%;
 	margin-right: 2.5%;
 	display: inline-block;

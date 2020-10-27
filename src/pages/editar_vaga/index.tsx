@@ -54,7 +54,7 @@ function EditarVaga() {
 			.then(function (response) {
 				if (response.status === 200) {
 					alert(response.data.message);
-					history.push('/painelRecrutador');
+					history.push('/vagas');
 				}
 			})
 			.catch(error => {
@@ -239,7 +239,7 @@ function EditarVaga() {
 											/>
 
 											<button
-												className='btn-page'
+												className='btn-add'
 												onClick={e => removeRequisito(e, i)}
 											>
 												Remover
@@ -274,7 +274,7 @@ function EditarVaga() {
 										</div>
 									);
 							})}
-							<button className='btn-page' onClick={e => addRequisito(e)}>
+							<button className='btn-add' onClick={e => addRequisito(e)}>
 								Adicionar Conhecimento
 							</button>
 						</fieldset>
