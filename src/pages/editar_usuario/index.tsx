@@ -105,7 +105,7 @@ function EditarUsuario() {
 	if (Object.keys(user).length == 0)
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description='Editar usuário' />
+				<Navbar title='CV Analytics' description='Editar usuário' />
 
 				<main></main>
 			</div>
@@ -113,7 +113,7 @@ function EditarUsuario() {
 	else
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description={'Editar usuário'} />
+				<Navbar title='CV Analytics' description={'Editar usuário'} />
 
 				<main>
 					<form>

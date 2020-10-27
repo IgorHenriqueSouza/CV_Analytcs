@@ -62,7 +62,7 @@ function Perfil() {
 	if (Object.keys(user).length == 0)
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description='Meu perfil' />
+				<Navbar title='CV Analytics' description='Meu perfil' />
 
 				<main></main>
 			</div>
@@ -70,7 +70,7 @@ function Perfil() {
 	else
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description={'Meu perfil'} />
+				<Navbar title='CV Analytics' description={'Meu perfil'} />
 
 				<main>
 					<form>

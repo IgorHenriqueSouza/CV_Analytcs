@@ -13,14 +13,14 @@ function PainelRecrutador() {
 		alert('Acesso não autorizado!');
 		return (
 			<div id='panel' className='container'>
-				<Navbar title='CV Analitcs' description='Painel do Recrutador' />
+				<Navbar title='CV Analytics' description='Painel do Recrutador' />
 				<main></main>
 			</div>
 		);
 	} else {
 		return (
 			<div id='panel' className='container'>
-				<Navbar title='CV Analitcs' description='Painel do Recrutador' />
+				<Navbar title='CV Analytics' description='Painel do Recrutador' />
 				<main>
 					<legend></legend>
 					<div className='painel'>

@@ -5,7 +5,7 @@ import { Redirect, Link, Route, useHistory } from 'react-router-dom';
 import GerenciadorListItem from '../../components/GerenciadorListItem';
 import './styles.css';
 
-function GerenciarUsuarios() {
+function GerenciadorResultados() {
 	let token = localStorage.getItem('token');
 	let history = useHistory();
 	let perPage = 3;
@@ -107,4 +107,4 @@ function GerenciarUsuarios() {
 		</div>
 	);
 }
-export default GerenciarUsuarios;
+export default GerenciadorResultados;

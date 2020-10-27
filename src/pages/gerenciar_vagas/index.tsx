@@ -64,7 +64,7 @@ function GerenciarVagas() {
 
 	return (
 		<div id='vagas' className='container'>
-			<Navbar title='CV Analitcs' description='Gerenciador de Vagas' />
+			<Navbar title='CV Analytics' description='Gerenciador de Vagas' />
 
 			<main>
 				<legend></legend>

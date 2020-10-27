@@ -13,7 +13,7 @@ function PainelCandidato() {
 		alert('Acesso não autorizado!');
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description='Painel do Candidato' />
+				<Navbar title='CV Analytics' description='Painel do Candidato' />
 				<main>
 					<legend></legend>
 				</main>
@@ -22,7 +22,7 @@ function PainelCandidato() {
 	} else {
 		return (
 			<div id='painel-form' className='container'>
-				<Navbar title='CV Analitcs' description='Painel do Candidato' />
+				<Navbar title='CV Analytics' description='Painel do Candidato' />
 				<main>
 					<legend></legend>
 				</main>

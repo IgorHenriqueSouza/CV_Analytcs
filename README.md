@@ -1,4 +1,5 @@
-# CV_Analitcs
+# CV_Analytics
 
 ### Vercel URL:
-https://cv-analitcs.vercel.app/
+
+https://cv-Analytics.vercel.app/

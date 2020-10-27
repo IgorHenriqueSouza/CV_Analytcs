@@ -50,7 +50,7 @@ function Login() {
 
 	return (
 		<div id='painel-form' className='container'>
-			<PageHeader title='Cv Analitcs - Login' />
+			<PageHeader title='Cv Analytics - Login' />
 
 			<main>
 				<form onSubmit={EnviarLogin}>

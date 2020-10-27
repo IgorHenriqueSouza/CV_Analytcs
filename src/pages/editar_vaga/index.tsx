@@ -163,7 +163,7 @@ function EditarVaga() {
 		return (
 			<div id='painel-form' className='container'>
 				<Navbar
-					title='CV Analitcs'
+					title='CV Analytics'
 					description='Editar e gerenciar vagas disponíveis.'
 				/>
 
@@ -174,7 +174,7 @@ function EditarVaga() {
 		return (
 			<div id='painel-form' className='container'>
 				<Navbar
-					title='CV Analitcs'
+					title='CV Analytics'
 					description='Editar e gerenciar vagas disponíveis.'
 				/>
 
