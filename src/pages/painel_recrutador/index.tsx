@@ -24,7 +24,7 @@ function PainelRecrutador() {
 				<main>
 					<legend></legend>
 					<div className='painel'>
-						<Link to='/' className='modules'>
+						<Link to='/resultados' className='modules'>
 							Visualização dos Resultados
 						</Link>
 

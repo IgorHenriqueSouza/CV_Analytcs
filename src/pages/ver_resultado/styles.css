@@ -150,3 +150,18 @@
 		margin-top: 0;
 	}
 }
+
+.btn-page {
+	background-color: #2a265f;
+	width: 200px !important;
+	margin-right: 6%;
+	display: inline-block;
+	border: 0px;
+	border-radius: 25px;
+	box-shadow: 3px 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	padding: 12px 15px 12px 15px;
+	cursor: pointer;
+}

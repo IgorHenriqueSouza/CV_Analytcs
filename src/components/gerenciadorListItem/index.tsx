@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 const GerenciadorListItem = ({ nome, descricao, local, id, tipo, ...rest }) => {
-	let url = tipo === 'vaga' ? 'editarVaga/' + id : 'editarUsuario/' + id;
+	let url = tipo === 'vaga' ? 'editarVaga/' + id : 'verResultado/' + id;
 
 	return (
 		<div>
@@ -17,7 +17,7 @@ const GerenciadorListItem = ({ nome, descricao, local, id, tipo, ...rest }) => {
 					<div className='course-info'>
 						<small>{descricao}</small>
 						<Link to={url}>
-							<button className='btn'>Editar</button>
+							<button className='btn'>Ver</button>
 						</Link>
 					</div>
 				</div>
