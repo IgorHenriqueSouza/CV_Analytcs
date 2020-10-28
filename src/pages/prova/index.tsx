@@ -26,7 +26,6 @@ function PainelCandidato() {
 								name='anos'
 								label='Quantos anos de experiência profissional você tem?'
 								placeholder='Escolha um valor'
-								value={anos}
 								options={[
 									{ value: '1', label: 'Um ano' },
 									{ value: '2', label: 'Dois anos' },
@@ -34,53 +33,12 @@ function PainelCandidato() {
 									{ value: '4', label: 'Quatro anos' },
 									{ value: '5', label: 'Cinco anos ou mais' },
 								]}
-								onChange={e => {
-									setAnos(e.target.value);
-								}}
-							/>
-							<Input
-								required
-								name='scrum'
-								label='Qual sua familiaridade com o framework ágil scrum?'
-								placeholder='Escolha um valor'
-								value={scrum}
-								options={niveis}
-								onChange={e => {
-									setScrum(e.target.value);
-								}}
-							/>
-							<Input
-								required
-								name='bd'
-								label='Qual sua familiaridade com banco de dados?'
-								placeholder='Escolha um valor'
-								value={bd}
-								options={niveis}
-								onChange={e => {
-									setBd(e.target.value);
-								}}
-							/>
-							<Input
-								required
-								name='js'
-								label='Qual sua familiaridade com JavaScript?'
-								placeholder='Escolha um valor'
-								value={js}
-								options={niveis}
-								onChange={e => {
-									setJs(e.target.value);
-								}}
 							/>
 							<Input
 								required
 								name='php'
 								label='Qual sua familiaridade com PHP?'
 								placeholder='Escolha um valor'
-								value={php}
-								options={niveis}
-								onChange={e => {
-									setPhp(e.target.value);
-								}}
 							/>
 						</fieldset>
 						<footer>
