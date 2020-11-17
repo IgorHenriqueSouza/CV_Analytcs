@@ -53,7 +53,7 @@ function EditarVaga() {
 			.post(process.env.REACT_APP_API_URL + '/vagas/edit?token=' + token, vaga)
 			.then(function (response) {
 				if (response.status === 200) {
-					alert(response.data.message);
+					//alert(response.data.message);
 					history.push('/vagas');
 				}
 			})
@@ -66,9 +66,9 @@ function EditarVaga() {
 						history.goBack();
 					}
 
-					alert(error.response.data.message);
+					//alert(error.response.data.message);
 				} else {
-					alert(error.message);
+					//alert(error.message);
 				}
 			});
 	};
@@ -135,9 +135,9 @@ function EditarVaga() {
 							history.goBack();
 						}
 
-						alert(error.response.data.message);
+						//alert(error.response.data.message);
 					} else {
-						alert(error.message);
+						//alert(error.message);
 					}
 				});
 
@@ -217,12 +217,18 @@ function EditarVaga() {
 										<div>
 											<hr></hr>
 											<Input
-												required
 												name='conhecimento'
 												label='Conhecimento'
 												value={x.nome}
-												placeholder='Escolha um valor'
-												options={requisitos}
+												options={[
+													{ value: '1', label: 'Javascript' },
+													{ value: '2', label: 'Scrum' },
+													{ value: '1', label: 'Java' },
+													{ value: '1', label: 'Python' },
+													{ value: '1', label: 'Lógica' },
+													{ value: '1', label: 'PHP' },
+													{ value: '1', label: 'Banco de dados' },
+												]}
 												onChange={e => {
 													setSRequisitos(e.target.value);
 												}}
@@ -232,7 +238,11 @@ function EditarVaga() {
 												name='nivel'
 												label='Nível de conhecimento'
 												value={x.nível}
-												options={niveis}
+												options={[
+													{ value: '1', label: 'Básicoa' },
+													{ value: '1', label: 'Intermediário' },
+													{ value: '1', label: 'Avançado' },
+												]}
 												onChange={e => {
 													setSNiveis(e.target.value);
 												}}
@@ -251,12 +261,18 @@ function EditarVaga() {
 										<div>
 											<hr></hr>
 											<Input
-												required
 												name='conhecimento'
 												label='Conhecimento'
 												value={x.nome}
-												placeholder='Escolha um valor'
-												options={requisitos}
+												options={[
+													{ value: '1', label: 'Javascript' },
+													{ value: '2', label: 'Scrum' },
+													{ value: '1', label: 'Java' },
+													{ value: '1', label: 'Python' },
+													{ value: '1', label: 'Lógica' },
+													{ value: '1', label: 'PHP' },
+													{ value: '1', label: 'Banco de dados' },
+												]}
 												onChange={e => {
 													setSRequisitos(e.target.value);
 												}}
@@ -266,7 +282,11 @@ function EditarVaga() {
 												name='nivel'
 												label='Nível de conhecimento'
 												value={x.nível}
-												options={niveis}
+												options={[
+													{ value: '1', label: 'Básico' },
+													{ value: '1', label: 'Intermediário' },
+													{ value: '1', label: 'Avançado' },
+												]}
 												onChange={e => {
 													setSNiveis(e.target.value);
 												}}

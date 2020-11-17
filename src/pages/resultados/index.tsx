@@ -85,10 +85,10 @@ function GerenciarVagas() {
 							Carregando...
 						</small>
 					) : (
-						filteredVagas.map(vaga => (
+						filteredVagas.map((vaga, i) => (
 							<GerenciadorListItem
 								nome={vaga.nome}
-								descricao='Média de compatibilidade: 87%'
+								descricao='Acessar relatórios de performance e perfis dos candidatos, resultados disponíveis.'
 								local={vaga.local}
 								id={vaga.id}
 								tipo='a'

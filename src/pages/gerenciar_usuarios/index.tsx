@@ -88,6 +88,7 @@ function GerenciarUsuarios() {
 								descricao={user.email}
 								local={user.tipo + ' - ' + (user.ativo ? 'Ativo' : 'Inativo')}
 								id={user.id}
+								url='/perfil'
 								tipo='user'
 							></GerenciadorListItem>
 						))

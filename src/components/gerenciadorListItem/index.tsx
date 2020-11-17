@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom';
 import './styles.css';
 
 const GerenciadorListItem = ({ nome, descricao, local, id, tipo, ...rest }) => {
-	let url = tipo === 'vaga' ? 'editarVaga/' + id : 'verResultado/' + id;
+	let url = '';
+
+	if (tipo == 'vaga') url = 'editarVaga/';
+	if (tipo == 'user') url = 'perfil/';
 
 	return (
 		<div>
