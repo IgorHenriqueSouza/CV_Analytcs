@@ -5,16 +5,16 @@ import PropTypes from 'prop-types';
 const Input = ({ label, name, ...rest }) => {
 	if (rest.mask)
 		return (
-			<div className='input-block'>
+			<div className='form-group'>
 				<label htmlFor={name}>{label}</label>
-				<MaskedInput id={name} {...rest} />
+				<MaskedInput id={name} name={name} className='form-control' {...rest} />
 			</div>
 		);
 	else if (rest.options) {
 		return (
-			<div className='input-block'>
+			<div className='form-group'>
 				<label htmlFor={name}>{label}</label>
-				<select id={name} {...rest}>
+				<select id={name} name={name} {...rest}>
 					<option value=''></option>
 					{rest.options.map(opt => (
 						<option value={opt.value}>{opt.label ?? opt.value}</option>
@@ -24,9 +24,9 @@ const Input = ({ label, name, ...rest }) => {
 		);
 	} else
 		return (
-			<div className='input-block'>
+			<div className='form-group'>
 				<label htmlFor={name}>{label}</label>
-				<input id={name} {...rest} />
+				<input id={name} name={name} className='form-control' {...rest} />
 			</div>
 		);
 };

@@ -24,7 +24,7 @@ const Login = ({ match }) => {
 			<div class='container-fluid'>
 				<Navbar />
 				<LoginForm />
-				<Background />
+				<Background type='divisor' />
 			</div>
 		);
 	else {
