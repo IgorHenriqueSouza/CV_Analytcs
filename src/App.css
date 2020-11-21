@@ -1,0 +1,128 @@
+/*=====================================================
+Template
+=====================================================*/
+body {
+	font-family: 'Bahnschrift', sans-serif !important;
+}
+
+:root {
+	--primary-color: #dc3545;
+	--dark-color: #333333;
+	--light-color: #f4f4f4;
+	--danger-color: #dc3545;
+	--success-color: #28a745;
+}
+
+body {
+	background-color: #fff;
+	color: black;
+	min-height: 100vh;
+}
+
+.container-fluid {
+	padding: 0;
+}
+
+.background-divisor {
+	height: 40vh;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: -1;
+	background-color: rgb(0, 0, 0);
+}
+
+/*=====================================================
+Alert
+=====================================================*/
+
+.alert {
+	padding: 0.7rem;
+	margin: 1rem 0;
+	opacity: 0.9;
+	background: var(--light-color);
+	position: absolute;
+	top: 5vh;
+	margin-left: 20%;
+	width: 60%;
+	z-index: 2;
+	color: #333;
+	border: none;
+}
+
+.alert-primary {
+	background: var(--primary-color);
+	color: #fff;
+}
+
+.alert-light {
+	background: var(--light-color);
+	color: #333;
+}
+
+.alert-dark {
+	background: var(--dark-color);
+	color: #fff;
+}
+
+.alert-danger {
+	background: var(--danger-color);
+	color: #fff;
+}
+
+.alert-success {
+	background: var(--success-color);
+	color: #fff;
+}
+
+.alert-white {
+	background: #fff;
+	color: #333;
+	border: #ccc solid 1px;
+}
+
+/*=====================================================
+Landing Page
+=====================================================*/
+.logo {
+	position: absolute;
+	left: 30vh;
+	top: 20vh;
+	height: 500px;
+}
+
+.landingImg {
+	position: relative;
+	left: 80vh;
+	top: 20vh;
+	height: 500px;
+}
+
+/*=====================================================
+	Size
+=====================================================*/
+
+.rounded {
+	border-radius: 1rem !important;
+}
+
+.main-container {
+	height: 60vh;
+	background-color: var(--light-color);
+	margin-top: 8%;
+}
+
+/*=====================================================
+Colors
+=====================================================*/
+.bg-black {
+	background-color: rgb(0, 0, 0);
+}
+
+.bg-grey {
+	background-color: rgb(10, 10, 10);
+}
+
+.btn-primary {
+	background-color: '#5a189a';
+}
