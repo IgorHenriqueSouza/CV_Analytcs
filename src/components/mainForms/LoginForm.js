@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Navbar from '../layout/Navbar';
-
-import CandidatoState from '../../context/candidato/CandidatoState';
-import RecrutadorState from '../../context/recrutador/RecrutadorState';
+import { Link, Redirect } from 'react-router-dom';
 import ApplicationContext from '../../context/application/applicationContext';
-import AlertContext from '../../context/alert/alertContext';
+import Input from '../form/Input.js';
 
-import Input from '../form/input';
-
-const LoginForm = ({ match }) => {
+const LoginForm = ({ type }) => {
 	const appContext = useContext(ApplicationContext);
+	const { loginUser, setUserData, validateUserType } = appContext;
+
 	const [form, setForm] = useState({});
+
+	const urlPrefix = '../cadastro/';
+	const [registerUrl] = useState(
+		type === 'candidato' || type !== 'candidato'
+			? urlPrefix + type
+			: urlPrefix + 'candidato'
+	);
 
 	const handleInputChange = e => {
 		const target = e.target;
@@ -23,6 +25,12 @@ const LoginForm = ({ match }) => {
 		previous[name] = value;
 
 		setForm(previous);
+	};
+
+	const submit = async e => {
+		e.preventDefault();
+
+		loginUser(form);
 	};
 
 	useEffect(() => {}, []);
@@ -38,12 +46,13 @@ const LoginForm = ({ match }) => {
 			<div class='row'>
 				<div class='col-offset-5'></div>
 			</div>
-			<form>
+			<form onSubmit={submit}>
 				<div class='row'>
 					<div class='col-sm-12'>
 						<Input
 							name='CPF'
 							label='CPF'
+							minLength='14'
 							type='text'
 							id='cpf'
 							guide={false}
@@ -72,6 +81,7 @@ const LoginForm = ({ match }) => {
 							name='password'
 							label='Senha'
 							type='password'
+							minLength='8'
 							id='password'
 							placeholder='***'
 							onChange={handleInputChange}
@@ -80,7 +90,9 @@ const LoginForm = ({ match }) => {
 				</div>
 				<div class='row'>
 					<div class='col'>
-						<a href=''>Ainda não sou registrado</a>
+						<Link className='purple' to={registerUrl}>
+							Ainda não sou registrado
+						</Link>
 					</div>
 					<div class='col-sm-2 offset-md-10'>
 						<button type='submit' class='btn btn-secondary btn-block'>

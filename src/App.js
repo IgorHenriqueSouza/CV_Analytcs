@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 /*JS */
@@ -15,7 +15,9 @@ import './App.css';
 import NotFound from './components/Pages/NotFound';
 import Landing from './components/Pages/Landing';
 import Login from './components/Pages/Login';
-
+import Painel from './components/Pages/Painel';
+import Vagas from './components/Pages/Vagas';
+import PreQuestionario from './components/Pages/PreQuestionario';
 /*Components */
 
 import Alert from './components/layout/Alert';
@@ -23,23 +25,39 @@ import Alert from './components/layout/Alert';
 /*States*/
 import AlertState from './context/alert/AlertState';
 import ApplicationState from './context/application/ApplicationState';
+import RecrutadorState from './context/recrutador/RecrutadorState';
+import CandidatoState from './context/candidato/CandidatoState';
 
-const App = () => (
-	<AlertState>
-		<ApplicationState>
-			<Router>
-				<div className='App'>
-					<Alert />
-					<Switch>
-						<Route exact path='/' component={Landing} />
-						<Route exact path='/login/:tipo' component={Login} />
-						<Route exact path='/cadastro/:tipo' component={Login} />
-						<Route component={NotFound} />
-					</Switch>
-				</div>
-			</Router>
-		</ApplicationState>
-	</AlertState>
-);
+const App = () => {
+	return (
+		<AlertState>
+			<ApplicationState>
+				<RecrutadorState>
+					<CandidatoState>
+						<Router>
+							<div className='App'>
+								<Alert />
+								<Switch>
+									<Route exact path='/' component={Landing} />
+									<Route exact path='/login/:tipo' component={Login} />
+									<Route exact path='/cadastro/:tipo' component={Login} />
+									<Route exact path='/painel' component={Painel} />
+									<Route exact path='/vagas' component={Vagas} />
+									<Route
+										exact
+										path='/preQuestionario'
+										component={PreQuestionario}
+									/>
+
+									<Route component={NotFound} />
+								</Switch>
+							</div>
+						</Router>
+					</CandidatoState>
+				</RecrutadorState>
+			</ApplicationState>
+		</AlertState>
+	);
+};
 
 export default App;

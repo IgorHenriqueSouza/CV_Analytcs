@@ -1,28 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import Navbar from '../layout/Navbar';
+import VagasMenu from '../recrutador/VagasMenu';
 
 import ApplicationContext from '../../context/application/applicationContext';
-import LoginForm from '../mainForms/LoginForm';
 import Background from '../layout/Background';
 
-const Login = ({ match }) => {
+const Vagas = () => {
 	const appContext = useContext(ApplicationContext);
-	const { validateUserType, token } = appContext;
-	const type = match.params.tipo;
+	const { validateUserType, isLoggedAndValidUser, setRedirectURL } = appContext;
 
-	if (!token)
+	useEffect(() => {
+		validateUserType(['recrutador']);
+	}, []);
+
+	if (!isLoggedAndValidUser) return <Redirect to='/' />;
+	else {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<LoginForm type={type} />
+				<VagasMenu />
 				<Background type='divisor' />
 			</div>
 		);
-	else {
-		return <Redirect to='/' />;
 	}
 };
 
-export default Login;
+export default Vagas;

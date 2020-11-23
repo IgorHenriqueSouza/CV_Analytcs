@@ -8,9 +8,9 @@ const CandidatoState = props => {
 	const initialState = {};
 
 	return (
-		<CandidatoState.Provider value={{}}>
+		<CandidatoContext.Provider value={{}}>
 			{props.children}
-		</CandidatoState.Provider>
+		</CandidatoContext.Provider>
 	);
 };
 

@@ -1,13 +1,15 @@
 /*=====================================================
-Template
+Common
 =====================================================*/
 body {
 	font-family: 'Bahnschrift', sans-serif !important;
 }
 
 :root {
-	--primary-color: #dc3545;
-	--dark-color: #333333;
+	--primary-color: #7b2cbf;
+	--secondary-color: #c77dff;
+	--dark-color: rgb(0, 0, 0);
+	--third-color: #10002b;
 	--light-color: #f4f4f4;
 	--danger-color: #dc3545;
 	--success-color: #28a745;
@@ -41,6 +43,49 @@ body {
 	background-color: rgb(0, 0, 0);
 }
 
+.overlay-dark {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	background-color: rgb(0, 0, 0, 0.7);
+}
+
+.overlay {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+}
+
+.absolute-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.loader {
+	border: 16px solid var(--secondary-color);
+	border-top: 16px solid var(--primary-color);
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 textarea:hover,
 input:hover,
 textarea:active,
@@ -59,9 +104,53 @@ label:focus,
 }
 
 .form-control {
+	border-radius: 0px;
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
+	border-bottom: 2px solid var(--primary-color);
+}
+
+a {
+	color: var(--primary-color);
+}
+
+a:hover {
+	color: var(--secondary-color) !important;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+	background-color: var(--primary-color) !important;
+	border-color: transparent;
+}
+
+.menu-item {
+	height: 140px;
+	cursor: pointer;
+	color: var(--dark-color);
+	background-color: var(--light-color);
+	border: 1px solid var(--dark-color);
+}
+
+.menu-item:hover {
+	color: var(--secondary-color);
+	border-color: var(--secondary-color);
+}
+
+.menu-item-thin {
+	height: 60px;
+	cursor: pointer;
+	color: var(--dark-color);
+	background-color: var(--light-color);
+	border: 1px solid var(--dark-color);
+}
+
+.menu-item-thin:hover {
+	color: var(--secondary-color);
+	border-color: var(--secondary-color);
 }
 
 /*=====================================================
@@ -75,8 +164,8 @@ Alert
 	background: var(--light-color);
 	position: absolute;
 	top: 5vh;
-	margin-left: 20%;
-	width: 60%;
+	margin-left: 50%;
+	width: 30%;
 	z-index: 2;
 	color: #333;
 	border: none;
@@ -139,9 +228,16 @@ Landing Page
 }
 
 .main-container {
-	height: 60vh;
+	min-height: 50vh;
 	background-color: var(--light-color);
 	margin-top: 8%;
+}
+.main-padding {
+	padding-bottom: 200px;
+}
+
+.menu-col > a:hover {
+	text-decoration: none;
 }
 
 /*=====================================================

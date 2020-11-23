@@ -1,3 +1,10 @@
 export const SET_LOADING = 'SET_LOADING';
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const SET_TOKEN = 'SET_TOKEN';
+export const LOGOUT = 'LOGOUT';
+export const SET_USER = 'SET_USER';
+export const PERMISSION_TRUE = 'PERMISSION_TRUE';
+export const PERMISSION_FALSE = 'PERMISSION_FALSE';
+export const CANCEL_LOADING = 'CANCEL_LOADING';
+export const SET_VAGAS = 'SET_VAGAS';
