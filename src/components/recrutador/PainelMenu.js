@@ -19,14 +19,14 @@ const PainelMenu = ({}) => {
 			</div>
 			<div class='row'>
 				<div class='col-sm-6 my-5 menu-col'>
-					<Link to='/resultados'>
+					<Link to='/vagas/visualizar'>
 						<div class='menu-item shadow-sm rounded px-5 absolute-center'>
 							<h1 class='display4'>Resultados</h1>
 						</div>
 					</Link>
 				</div>
 				<div class='col-sm-6 my-5 menu-col'>
-					<Link to='/vagas'>
+					<Link to='/vagas/editar'>
 						<div class='menu-item shadow-sm rounded px-5 absolute-center'>
 							<h1 class='display4'>Vagas</h1>
 						</div>

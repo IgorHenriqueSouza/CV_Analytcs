@@ -15,8 +15,11 @@ import './App.css';
 import NotFound from './components/Pages/NotFound';
 import Landing from './components/Pages/Landing';
 import Login from './components/Pages/Login';
+import Cadastro from './components/Pages/Cadastro';
 import Painel from './components/Pages/Painel';
 import Vagas from './components/Pages/Vagas';
+import Vaga from './components/Pages/Vaga';
+import Perfil from './components/Pages/Perfil';
 import PreQuestionario from './components/Pages/PreQuestionario';
 /*Components */
 
@@ -40,9 +43,11 @@ const App = () => {
 								<Switch>
 									<Route exact path='/' component={Landing} />
 									<Route exact path='/login/:tipo' component={Login} />
-									<Route exact path='/cadastro/:tipo' component={Login} />
+									<Route exact path='/cadastro/:tipo' component={Cadastro} />
 									<Route exact path='/painel' component={Painel} />
-									<Route exact path='/vagas' component={Vagas} />
+									<Route exact path='/vagas/:tipo' component={Vagas} />
+									<Route exact path='/perfil/:cpf' component={Perfil} />
+									<Route exact path='/vaga/:id/:edit' component={Vaga} />
 									<Route
 										exact
 										path='/preQuestionario'

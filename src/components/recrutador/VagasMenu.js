@@ -4,36 +4,25 @@ import RecrutadorContext from '../../context/recrutador/recrutadorContext.js';
 import ApplicationContext from '../../context/application/applicationContext.js';
 import Input from '../form/Input.js';
 
-const VagasMenu = ({}) => {
+const VagasMenu = ({ results }) => {
 	const recrutadorContext = useContext(RecrutadorContext);
-	const { vagas, fetchVagas } = recrutadorContext;
+	const {
+		vagas,
+		fetchVagas,
+		setVagasFilter,
+		vagasFilter,
+		vagasInit,
+		resultsPerPage,
+		setVagasPage,
+	} = recrutadorContext;
 
-	const [data, setData] = useState([]);
-	const [filter, setFilter] = useState('');
+	console.log(results);
 
 	const handleChange = event => {
-		setFilter(event.target.value);
+		setVagasFilter(event.target.value);
 	};
 
-	const applyFilter = () => {
-		if (filter && filter.trim() !== '') {
-			var res = vagas.filter(x => {
-				let low = filter.toLowerCase();
-
-				return (
-					x.local.toLowerCase().includes(low) ||
-					x.descricao.toLowerCase().includes(low) ||
-					x.nome.toLowerCase().includes(low)
-				);
-			});
-
-			return res;
-		} else {
-			return vagas;
-		}
-	};
-
-	useEffect(() => {
+	useEffect(e => {
 		fetchVagas();
 	}, []);
 
@@ -50,7 +39,7 @@ const VagasMenu = ({}) => {
 					<Input
 						name='filter'
 						placeholder='Filtro...'
-						value={filter}
+						value={vagasFilter}
 						onChange={handleChange}
 					/>
 				</div>
@@ -65,14 +54,20 @@ const VagasMenu = ({}) => {
 					</tr>
 				</thead>
 				<tbody>
-					{applyFilter().map(x => {
+					{vagas.map(x => {
+						let url = !results
+							? '../resultado/' + x.id + ''
+							: '../vaga/' + x.id + '/true';
+
+						let text = !results ? 'Ver Resultado' : 'Editar';
 						return (
 							<tr>
-								<th>{x.local}a</th>
+								<th>{x.local}</th>
 								<th>{x.nome}</th>
 								<th>{x.descricao}</th>
+
 								<th>
-									<Link to={'vaga/' + x.id}>Editar</Link>
+									<Link to={url}>{text}</Link>
 								</th>
 							</tr>
 						);
@@ -81,11 +76,24 @@ const VagasMenu = ({}) => {
 				<tfoot>
 					<tr>
 						<td colspan='3' class='text-center'>
-							{applyFilter().length} resultados.
+							Mostrando {vagas.length} de {vagasInit.length} resultados.
 						</td>
 					</tr>
 				</tfoot>
 			</table>
+
+			<div class='d-flex justify-content-end'>
+				{[...Array(Math.ceil(vagasInit.length / resultsPerPage)).keys()].map(
+					x => (
+						<div
+							class='btn btn-outline-secondary rounded mx-1 px-3'
+							onClick={() => setVagasFilter(vagasFilter, null, x + 1)}
+						>
+							{x + 1}
+						</div>
+					)
+				)}
+			</div>
 		</div>
 	);
 };

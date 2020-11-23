@@ -8,10 +8,39 @@ import {
 	PERMISSION_FALSE,
 	LOGOUT,
 	CANCEL_LOADING,
+	SET_REGISTER_DATA,
+	CLEAR_REGISTER_DATA,
+	CLEAR_REGISTER_FINISHED,
 } from '../types';
 
 export default (state, action) => {
 	switch (action.type) {
+		case CLEAR_REGISTER_FINISHED:
+			return {
+				...state,
+				registerFinished: false,
+				loading: false,
+			};
+		case CLEAR_REGISTER_DATA:
+			return {
+				...state,
+				registerData: {
+					nome: null,
+					sobrenome: null,
+					cpf: null,
+					email: null,
+					senha: null,
+					senhaConfirm: null,
+				},
+				registerFinished: true,
+				loading: false,
+			};
+		case SET_REGISTER_DATA:
+			return {
+				...state,
+				registerData: action.payload,
+				loading: false,
+			};
 		case PERMISSION_TRUE:
 			return {
 				...state,

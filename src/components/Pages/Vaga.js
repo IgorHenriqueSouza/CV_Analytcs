@@ -2,19 +2,25 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import Navbar from '../layout/Navbar';
-import VagasMenu from '../recrutador/VagasMenu';
+import VagaForm from '../mainForms/VagaForm';
 
 import ApplicationContext from '../../context/application/applicationContext';
+import RecrutadorContext from '../../context/recrutador/recrutadorContext';
 import Background from '../layout/Background';
 
-const Vagas = ({ match }) => {
+const Vaga = ({ match }) => {
 	const appContext = useContext(ApplicationContext);
-	const { validateUserType, isLoggedAndValidUser, setRedirectURL } = appContext;
+	const { validateUserType, isLoggedAndValidUser } = appContext;
 
-	const results = match.params.tipo == 'visualizar' ? false : true;
+	const recrutadorContext = useContext(RecrutadorContext);
+	const { getVagaData } = recrutadorContext;
+
+	const readOnly = match.params.edit === 'true' ? false : true;
 
 	useEffect(() => {
 		validateUserType(['recrutador']);
+
+		getVagaData(match.params.id);
 	}, []);
 
 	if (!isLoggedAndValidUser) return <Redirect to='/' />;
@@ -22,11 +28,11 @@ const Vagas = ({ match }) => {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<VagasMenu results={results} />
+				<VagaForm readOnly={readOnly} />
 				<Background type='divisor' />
 			</div>
 		);
 	}
 };
 
-export default Vagas;
+export default Vaga;

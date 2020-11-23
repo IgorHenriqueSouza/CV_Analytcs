@@ -2,19 +2,28 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
 import Navbar from '../layout/Navbar';
-import VagasMenu from '../recrutador/VagasMenu';
+import PerfilForm from '../mainForms/PerfilForm';
 
 import ApplicationContext from '../../context/application/applicationContext';
 import Background from '../layout/Background';
 
-const Vagas = ({ match }) => {
+const Perfil = ({ match }) => {
 	const appContext = useContext(ApplicationContext);
-	const { validateUserType, isLoggedAndValidUser, setRedirectURL } = appContext;
-
-	const results = match.params.tipo == 'visualizar' ? false : true;
+	const {
+		validateUserType,
+		isLoggedAndValidUser,
+		user,
+		getUserData,
+	} = appContext;
 
 	useEffect(() => {
-		validateUserType(['recrutador']);
+		if (match.params.cpf !== user.user) {
+			validateUserType(['recrutador']);
+		} else {
+			validateUserType();
+		}
+
+		getUserData(match.params.cpf);
 	}, []);
 
 	if (!isLoggedAndValidUser) return <Redirect to='/' />;
@@ -22,11 +31,11 @@ const Vagas = ({ match }) => {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<VagasMenu results={results} />
+				<PerfilForm readOnly={true} />
 				<Background type='divisor' />
 			</div>
 		);
 	}
 };
 
-export default Vagas;
+export default Perfil;

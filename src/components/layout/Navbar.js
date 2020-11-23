@@ -7,6 +7,8 @@ const Navbar = ({ title }) => {
 	const applicationContext = useContext(ApplicationContext);
 	const { token, user, logout } = applicationContext;
 
+	const perfilUrl = user && user.user ? `/perfil/${user.user}` : '/';
+
 	if (!token)
 		return (
 			<div class='container navbarcont'>
@@ -38,12 +40,12 @@ const Navbar = ({ title }) => {
 					</button>
 					<div class='collapse navbar-collapse ' id='navbarNav'>
 						<ul class='navbar-nav ml-auto'>
-							<li class='nav-item active pb-0'>
-								<Link to='/perfil' className='nav-link'>
+							<li class='nav-item pb-0'>
+								<Link to={perfilUrl} className='nav-link'>
 									Meu Perfil <span class='sr-only'>(current)</span>
 								</Link>
 							</li>
-							<li class='nav-item'>
+							<li class='nav-item active'>
 								<Link to='/painel' className='nav-link'>
 									Painel do Recrutador <span class='sr-only'>(current)</span>
 								</Link>
@@ -81,8 +83,19 @@ const Navbar = ({ title }) => {
 					<div class='collapse navbar-collapse ' id='navbarNav'>
 						<ul class='navbar-nav ml-auto'>
 							<li class='nav-item active pb-0'>
-								<Link to='/perfil' className='nav-link'>
+								<Link to='/preQuestionario' className='nav-link'>
+									Prova <span class='sr-only'>(current)</span>
+								</Link>
+							</li>
+							<li class='nav-item pb-0'>
+								<Link to={perfilUrl} className='nav-link'>
 									Meu Perfil <span class='sr-only'>(current)</span>
+								</Link>
+							</li>
+							<li class='nav-item'>
+								<Link onClick={logout} className='nav-link'>
+									Sair <span class='sr-only'>(current)</span>
+									<i class='fas fa-arrow-right'></i>
 								</Link>
 							</li>
 						</ul>

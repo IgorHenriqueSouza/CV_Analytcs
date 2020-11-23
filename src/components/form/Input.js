@@ -14,7 +14,7 @@ const Input = ({ label, name, ...rest }) => {
 		return (
 			<div className='form-group'>
 				<label htmlFor={name}>{label}</label>
-				<select id={name} name={name} {...rest}>
+				<select className='form-control' id={name} name={name} {...rest}>
 					<option value=''></option>
 					{rest.options.map(opt => (
 						<option value={opt.value}>{opt.label ?? opt.value}</option>
