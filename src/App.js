@@ -18,9 +18,11 @@ import Login from './components/Pages/Login';
 import Cadastro from './components/Pages/Cadastro';
 import Painel from './components/Pages/Painel';
 import Vagas from './components/Pages/Vagas';
+import Prova from './components/Pages/Prova';
 import Vaga from './components/Pages/Vaga';
 import Perfil from './components/Pages/Perfil';
 import PreQuestionario from './components/Pages/PreQuestionario';
+import Resultado from './components/Pages/Resultado';
 /*Components */
 
 import Alert from './components/layout/Alert';
@@ -48,6 +50,8 @@ const App = () => {
 									<Route exact path='/vagas/:tipo' component={Vagas} />
 									<Route exact path='/perfil/:cpf' component={Perfil} />
 									<Route exact path='/vaga/:id/:edit' component={Vaga} />
+									<Route exact path='/prova' component={Prova} />
+									<Route exact path='/resultado/:id' component={Resultado} />
 									<Route
 										exact
 										path='/preQuestionario'

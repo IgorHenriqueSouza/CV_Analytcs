@@ -6,31 +6,40 @@ import Navbar from '../layout/Navbar';
 import ApplicationContext from '../../context/application/applicationContext';
 import CandidatoContext from '../../context/candidato/candidatoContext';
 import Background from '../layout/Background';
-import PreQuestionarioForm from '../mainForms/PreQuestionarioForm';
+import ProvaForm from '../mainForms/ProvaForm';
+import Agradecimento from '../candidato/Agradecimento';
+import ErroFatal from '../candidato/ErroFatal';
 
-const PreQuestionario = () => {
+const Prova = () => {
 	const appContext = useContext(ApplicationContext);
 	const { validateUserType, isLoggedAndValidUser } = appContext;
 
 	const candidatoContext = useContext(CandidatoContext);
-	const { setPreQuestionarioStatus, preQuestionarioDone } = candidatoContext;
+	const { setProvaStatus, provaDone } = candidatoContext;
 
 	useEffect(() => {
 		validateUserType(['candidato']);
-		if (isLoggedAndValidUser) setPreQuestionarioStatus();
+		if (isLoggedAndValidUser) setProvaStatus();
 	}, []);
 
 	if (!isLoggedAndValidUser) return <Redirect to='/' />;
-	else if (preQuestionarioDone === true) return <Redirect to='/prova' />;
-	else {
+	else if (provaDone) {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<PreQuestionarioForm />
+				<Agradecimento />
+				<Background type='divisor' />
+			</div>
+		);
+	} else {
+		return (
+			<div class='container-fluid main-padding'>
+				<Navbar />
+				<ProvaForm />
 				<Background type='divisor' />
 			</div>
 		);
 	}
 };
 
-export default PreQuestionario;
+export default Prova;

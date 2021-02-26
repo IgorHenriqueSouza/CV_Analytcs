@@ -19,6 +19,7 @@ const PreQuestionarioForm = ({ type }) => {
 	const candidatoContext = useContext(CandidatoContext);
 	const {
 		preQuestionario,
+		preQuestionarioDone,
 		setPreQuestionario,
 		sendPreQuestionario,
 	} = candidatoContext;
@@ -58,62 +59,64 @@ const PreQuestionarioForm = ({ type }) => {
 			<div class='row'>
 				<div class='col-offset-5'></div>
 			</div>
-			<form onSubmit={submit}>
-				<div class='row'>
-					<div class='col-sm-12'>
-						{Object.keys(preQuestionario).map(x => {
-							let parser = {
-								anos:
-									'Quantos anos de experiência você tem na sua área de atuação?',
-								js:
-									'Qual a sua familiaridade com a linguagem de programação JavaScript?',
-								bd:
-									'Qual seu nível de conhecimento em relação a banco de dados?',
-								scrum:
-									'Qual a sua familiaridade com o framework ágil denominado "Scrum"?',
-								php:
-									'Qual seu nível de conhecimento com a linguagem de programação PHP?',
-							};
+			{preQuestionarioDone === false ? (
+				<form onSubmit={submit}>
+					<div class='row'>
+						<div class='col-sm-12'>
+							{Object.keys(preQuestionario).map(x => {
+								let parser = {
+									anos:
+										'Quantos anos de experiência você tem na sua área de atuação?',
+									js:
+										'Qual a sua familiaridade com a linguagem de programação JavaScript?',
+									bd:
+										'Qual seu nível de conhecimento em relação a banco de dados?',
+									scrum:
+										'Qual a sua familiaridade com o framework ágil denominado "Scrum"?',
+									php:
+										'Qual seu nível de conhecimento com a linguagem de programação PHP?',
+								};
 
-							let parserOptions =
-								x == 'anos'
-									? [
-											{ id: 1, value: '1 ano' },
-											{ id: 2, value: '2 anos' },
-											{ id: 3, value: '3 anos' },
-											{ id: 4, value: '4 anos ou mais' },
-									  ]
-									: [
-											{ id: 'Básico', value: 'Básico' },
-											{ id: 'Avançado', value: 'Avançado' },
-											{ id: 'Intermediário', value: 'Intermediário' },
-									  ];
+								let parserOptions =
+									x == 'anos'
+										? [
+												{ id: 1, value: '1 ano' },
+												{ id: 2, value: '2 anos' },
+												{ id: 3, value: '3 anos' },
+												{ id: 4, value: '4 anos ou mais' },
+										  ]
+										: [
+												{ id: 'Básico', value: 'Básico' },
+												{ id: 'Avançado', value: 'Avançado' },
+												{ id: 'Intermediário', value: 'Intermediário' },
+										  ];
 
-							return x == 'id' ? null : (
-								<div class='row'>
-									<div class='col-sm-12'>
-										<Input
-											name={x}
-											label={parser[x]}
-											value={preQuestionario[x]}
-											options={parserOptions}
-											onChange={handleInputChange}
-											required
-										/>
+								return x == 'id' ? null : (
+									<div class='row'>
+										<div class='col-sm-12'>
+											<Input
+												name={x}
+												label={parser[x]}
+												value={preQuestionario[x]}
+												options={parserOptions}
+												onChange={handleInputChange}
+												required
+											/>
+										</div>
 									</div>
-								</div>
-							);
-						})}
+								);
+							})}
+						</div>
 					</div>
-				</div>
-				<div class='row'>
-					<div class='col-sm-2 offset-md-10'>
-						<button type='submit' class='btn btn-secondary btn-block'>
-							Cadastrar
-						</button>
+					<div class='row'>
+						<div class='col-sm-2 offset-md-10'>
+							<button type='submit' class='btn btn-secondary btn-block'>
+								Cadastrar
+							</button>
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+			) : null}
 		</div>
 	);
 };

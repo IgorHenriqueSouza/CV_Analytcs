@@ -38,7 +38,7 @@ export const Landing = () => {
 		if (user && user.type == 'recrutador') {
 			return <Redirect to='/painel' />;
 		} else if (user && user.type == 'candidato') {
-			return <Redirect to={`/perfil/${user.user}`} />;
+			return <Redirect to={`/preQuestionario`} />;
 		}
 	}
 };
