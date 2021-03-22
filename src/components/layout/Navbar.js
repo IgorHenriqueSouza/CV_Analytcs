@@ -13,7 +13,7 @@ const Navbar = ({ title }) => {
 		return (
 			<div class='container navbarcont'>
 				<nav class='navbar navbar-expand-lg navbar-dark bg-black'>
-					<a class='navbar-brand' href='#'>
+					<a class='navbar-brand' href='/'>
 						<h1 class='display-4'>{title}</h1>
 					</a>
 				</nav>
@@ -23,7 +23,7 @@ const Navbar = ({ title }) => {
 		return (
 			<div class='container navbarcont'>
 				<nav className='navbar navbar-expand-lg navbar-dark bg-black'>
-					<a class='navbar-brand' href='#'>
+					<a class='navbar-brand' href='/'>
 						<h1 class='display-4'>{title}</h1>
 					</a>
 
@@ -65,7 +65,7 @@ const Navbar = ({ title }) => {
 		return (
 			<div class='container navbarcont'>
 				<nav className='navbar navbar-expand-lg navbar-dark bg-black'>
-					<a class='navbar-brand' href='#'>
+					<a class='navbar-brand' href='/'>
 						<h1 class='display-4'>{title}</h1>
 					</a>
 

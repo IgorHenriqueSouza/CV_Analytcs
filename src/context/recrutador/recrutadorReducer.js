@@ -1,4 +1,13 @@
-import { SET_VAGAS, FILTER_VAGAS, SET_VAGAS_PAGE, SET_VAGA } from '../types';
+import {
+	SET_VAGAS,
+	FILTER_VAGAS,
+	SET_VAGAS_PAGE,
+	SET_VAGA,
+	SET_USUARIOS,
+	FILTER_USUARIOS,
+	SET_USUARIOS_PAGE,
+	SET_USUARIO_DETALHADO,
+} from '../types';
 
 export default (state, action) => {
 	switch (action.type) {
@@ -23,6 +32,28 @@ export default (state, action) => {
 				...state,
 				vagasFilter: action.payload.filter,
 				vagas: action.payload.vagas,
+			};
+		case SET_USUARIO_DETALHADO:
+			return {
+				...state,
+				usuario: action.payload,
+			};
+		case SET_USUARIOS:
+			return {
+				...state,
+				usuariosInit: action.payload.init,
+				usuarios: action.payload.paginated,
+			};
+		case SET_USUARIOS_PAGE:
+			return {
+				...state,
+				usuariosPage: action.payload,
+			};
+		case FILTER_USUARIOS:
+			return {
+				...state,
+				usuariosFilter: action.payload.filter,
+				usuarios: action.payload.usuarios,
 			};
 		default:
 			return state;

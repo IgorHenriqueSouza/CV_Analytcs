@@ -5,7 +5,6 @@ import Navbar from '../layout/Navbar';
 
 import ApplicationContext from '../../context/application/applicationContext';
 import CadastroForm from '../mainForms/CadastroForm';
-import Background from '../layout/Background';
 
 const Cadastro = ({ match }) => {
 	const appContext = useContext(ApplicationContext);
@@ -17,7 +16,6 @@ const Cadastro = ({ match }) => {
 			<div class='container-fluid main-padding'>
 				<Navbar />
 				<CadastroForm type={type} />
-				<Background type='divisor' />
 			</div>
 		);
 	else {

@@ -127,6 +127,40 @@ const CadastroForm = ({ type }) => {
 								</div>
 							</div>
 						);
+					} else if (x == 'cpf') {
+						return (
+							<div class='row'>
+								<div class='col-sm-12'>
+									<Input
+										name={x}
+										label={x.toUpperCase()}
+										value={registerData[x]}
+										onChange={handleInputChange}
+										type='text'
+										minLength='14'
+										guide={false}
+										mask={[
+											/[0-9]/,
+											/[0-9]/,
+											/[0-9]/,
+											'.',
+											/[0-9]/,
+											/[0-9]/,
+											/[0-9]/,
+											'.',
+											/[0-9]/,
+											/[0-9]/,
+											/[0-9]/,
+											'-',
+											/[0-9]/,
+											/[0-9]/,
+										]}
+										placeholder='xxx.xxx.xxx-xx'
+										required
+									/>
+								</div>
+							</div>
+						);
 					}
 
 					return x == 'id' || x == 'tipo' ? null : (

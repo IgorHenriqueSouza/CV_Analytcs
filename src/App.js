@@ -18,6 +18,7 @@ import Login from './components/Pages/Login';
 import Cadastro from './components/Pages/Cadastro';
 import Painel from './components/Pages/Painel';
 import Vagas from './components/Pages/Vagas';
+import Usuarios from './components/Pages/Usuarios';
 import Prova from './components/Pages/Prova';
 import Vaga from './components/Pages/Vaga';
 import Perfil from './components/Pages/Perfil';
@@ -26,6 +27,7 @@ import Resultado from './components/Pages/Resultado';
 /*Components */
 
 import Alert from './components/layout/Alert';
+import Background from './components/layout/Background';
 
 /*States*/
 import AlertState from './context/alert/AlertState';
@@ -42,12 +44,14 @@ const App = () => {
 						<Router>
 							<div className='App'>
 								<Alert />
+								<Background type='divisor' />
 								<Switch>
 									<Route exact path='/' component={Landing} />
 									<Route exact path='/login/:tipo' component={Login} />
 									<Route exact path='/cadastro/:tipo' component={Cadastro} />
 									<Route exact path='/painel' component={Painel} />
 									<Route exact path='/vagas/:tipo' component={Vagas} />
+									<Route exact path='/users/' component={Usuarios} />
 									<Route exact path='/perfil/:cpf' component={Perfil} />
 									<Route exact path='/vaga/:id/:edit' component={Vaga} />
 									<Route exact path='/prova' component={Prova} />
