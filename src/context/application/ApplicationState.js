@@ -17,8 +17,10 @@ import {
 	CLEAR_REGISTER_FINISHED,
 } from '../types';
 
-//const apiURL = 'https://tcc-unip-api.herokuapp.com/';
-const apiURL = 'http://127.0.0.1:5000/';
+let apiURL;
+
+if (process.env.NODE_ENV == 'development') apiURL = 'http://127.0.0.1:5000/';
+else apiURL = 'https://tcc-unip-api.herokuapp.com/';
 
 const ApplicationState = props => {
 	const initialState = {
