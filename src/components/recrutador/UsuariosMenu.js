@@ -4,7 +4,7 @@ import RecrutadorContext from '../../context/recrutador/recrutadorContext.js';
 import ApplicationContext from '../../context/application/applicationContext.js';
 import Input from '../form/Input.js';
 
-const UsuariosMenu = ({ results }) => {
+const UsuariosMenu = ({}) => {
 	const recrutadorContext = useContext(RecrutadorContext);
 	const {
 		usuarios,
@@ -56,11 +56,7 @@ const UsuariosMenu = ({ results }) => {
 				</thead>
 				<tbody>
 					{usuarios.map(x => {
-						let url = !results
-							? '../resultado/' + x.id + ''
-							: '../vaga/' + x.id + '/true';
-
-						let text = !results ? 'Ver Resultado' : 'Editar';
+						let url = '../perfil/' + x.cpf + '/true';
 						return (
 							<tr>
 								<th>{x.cpf}</th>
@@ -73,7 +69,7 @@ const UsuariosMenu = ({ results }) => {
 								</th>
 
 								<th>
-									<Link to={url}>{text}</Link>
+									<Link to={url}>{'Editar'}</Link>
 								</th>
 							</tr>
 						);

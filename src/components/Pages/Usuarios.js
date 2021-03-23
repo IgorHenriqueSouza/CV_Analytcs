@@ -11,8 +11,6 @@ const Vagas = ({ match }) => {
 	const appContext = useContext(ApplicationContext);
 	const { validateUserType, isLoggedAndValidUser, setRedirectURL } = appContext;
 
-	const results = match.params.tipo == 'visualizar' ? false : true;
-
 	useEffect(() => {
 		validateUserType(['recrutador']);
 	}, []);
@@ -22,7 +20,7 @@ const Vagas = ({ match }) => {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<UsuariosMenu results={results} />
+				<UsuariosMenu />
 				<Background type='divisor' />
 			</div>
 		);

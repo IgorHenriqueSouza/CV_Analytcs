@@ -14,7 +14,10 @@ const Perfil = ({ match }) => {
 		isLoggedAndValidUser,
 		user,
 		getUserData,
+		setUserData,
 	} = appContext;
+
+	const [isEdit] = useState(match.params.edit);
 
 	useEffect(() => {
 		if (match.params.cpf !== user.user) {
@@ -22,7 +25,6 @@ const Perfil = ({ match }) => {
 		} else {
 			validateUserType();
 		}
-
 		getUserData(match.params.cpf);
 	}, []);
 
@@ -31,7 +33,10 @@ const Perfil = ({ match }) => {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<PerfilForm readOnly={true} />
+				<PerfilForm
+					readOnly={true}
+					edit={isEdit && user.user !== match.params.cpf}
+				/>
 				<Background type='divisor' />
 			</div>
 		);

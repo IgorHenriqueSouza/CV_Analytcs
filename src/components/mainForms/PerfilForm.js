@@ -2,22 +2,26 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ApplicationContext from '../../context/application/applicationContext';
 import Input from '../form/Input.js';
+import Select from '../form/Input';
 
-const PerfilForm = readOnly => {
+const PerfilForm = ({ readOnly, edit }) => {
 	const appContext = useContext(ApplicationContext);
-	const { userProfile, user } = appContext;
-
-	const [form, setForm] = useState({});
+	const { userProfile, user, setUserData } = appContext;
 
 	const handleInputChange = e => {
 		const target = e.target;
-		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const value =
+			target.type === 'checkbox'
+				? target.checked
+				: target.value == 'Ativo'
+				? true
+				: false;
 		const name = target.name;
 
-		let previous = JSON.parse(JSON.stringify(form));
+		let previous = JSON.parse(JSON.stringify(userProfile));
 		previous[name] = value;
 
-		setForm(previous);
+		setUserData(previous);
 	};
 
 	const submit = async e => {
@@ -51,18 +55,39 @@ const PerfilForm = readOnly => {
 				</div>
 				<form onSubmit={submit}>
 					{Object.keys(userProfile).map(x => {
-						return x == 'id' ? null : (
-							<div class='row'>
-								<div class='col-sm-12'>
-									<Input
-										name={x}
-										label={x.toUpperCase()}
-										value={userProfile[x]}
-										disabled={readOnly}
-									/>
+						if (x == 'id') return null;
+						else if (x == 'ativo') {
+							return (
+								<div class='row'>
+									<div class='col-sm-12'>
+										<Input
+											name={x}
+											label={x.toUpperCase()}
+											value={userProfile[x] === true ? 'Ativo' : 'Inativo'}
+											options={[
+												{ id: true, value: 'Ativo' },
+												{ id: false, value: 'Inativo' },
+											]}
+											onChange={handleInputChange}
+											disabled={!edit}
+										/>
+									</div>
 								</div>
-							</div>
-						);
+							);
+						} else {
+							return (
+								<div class='row'>
+									<div class='col-sm-12'>
+										<Input
+											name={x}
+											label={x.toUpperCase()}
+											value={userProfile[x]}
+											disabled={readOnly}
+										/>
+									</div>
+								</div>
+							);
+						}
 					})}
 					{!readOnly ? (
 						<div class='row'>

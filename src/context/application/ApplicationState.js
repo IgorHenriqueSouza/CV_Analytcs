@@ -17,8 +17,8 @@ import {
 	CLEAR_REGISTER_FINISHED,
 } from '../types';
 
-const apiURL = 'https://tcc-unip-api.herokuapp.com/';
-//const apiURL = 'http://127.0.0.1:5000/';
+//const apiURL = 'https://tcc-unip-api.herokuapp.com/';
+const apiURL = 'http://127.0.0.1:5000/';
 
 const ApplicationState = props => {
 	const initialState = {
@@ -141,6 +141,28 @@ const ApplicationState = props => {
 		}
 	};
 
+	//Set User Data
+	const setUserData = async data => {
+		setLoading();
+
+		const res = await Post(
+			`${apiURL}/usuarios/approveUser?token=${state.token}`,
+			data
+		);
+
+		if (res.error) {
+			setAlert(res.error, 'danger');
+		}
+
+		setAlert(res.data.message, 'primary');
+
+		dispatch({
+			type: SET_USER,
+			payload: data,
+		});
+		cancelLoading();
+	};
+
 	//Paginate
 	const getPagination = (array, resultsPerPage, page) => {
 		const pageCount = Math.ceil(array.length / resultsPerPage);
@@ -244,6 +266,7 @@ const ApplicationState = props => {
 				registerUser: registerUser,
 				setRegisterData: setRegisterData,
 				registerFinished: state.registerFinished,
+				setUserData: setUserData,
 				clearRegisterFinished,
 			}}
 		>

@@ -52,7 +52,7 @@ const App = () => {
 									<Route exact path='/painel' component={Painel} />
 									<Route exact path='/vagas/:tipo' component={Vagas} />
 									<Route exact path='/users/' component={Usuarios} />
-									<Route exact path='/perfil/:cpf' component={Perfil} />
+									<Route exact path='/perfil/:cpf/:edit?' component={Perfil} />
 									<Route exact path='/vaga/:id/:edit' component={Vaga} />
 									<Route exact path='/prova' component={Prova} />
 									<Route exact path='/resultado/:id' component={Resultado} />

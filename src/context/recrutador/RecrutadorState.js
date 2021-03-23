@@ -56,23 +56,23 @@ const RecrutadorState = props => {
 	// Listar vagas do servidor
 	const fetchVagas = async () => {
 		setLoading();
-		if (!state.vagasInit || state.vagasInit.length === 0) {
-			const res = await Get(`${apiURL}/vagas`, { token: token });
+		//if (!state.vagasInit || state.vagasInit.length === 0) {
+		const res = await Get(`${apiURL}/vagas`, { token: token });
 
-			if (res.error) {
-				setAlert(res.error, 'danger');
-			} else {
-				let params = {
-					init: res.data,
-					paginated: setVagasFilter(null, res.data),
-				};
+		if (res.error) {
+			setAlert(res.error, 'danger');
+		} else {
+			let params = {
+				init: res.data,
+				paginated: setVagasFilter(null, res.data),
+			};
 
-				dispatch({
-					type: SET_VAGAS,
-					payload: params,
-				});
-			}
+			dispatch({
+				type: SET_VAGAS,
+				payload: params,
+			});
 		}
+		//}
 		cancelLoading();
 	};
 
@@ -172,22 +172,20 @@ const RecrutadorState = props => {
 	// Listar usuarios do servidor
 	const fetchUsuarios = async () => {
 		setLoading();
-		if (!state.usuariosInit || state.usuariosInit.length === 0) {
-			const res = await Get(`${apiURL}/usuarios`, { token: token });
+		const res = await Get(`${apiURL}/usuarios`, { token: token });
 
-			if (res.error) {
-				setAlert(res.error, 'danger');
-			} else {
-				let params = {
-					init: res.data,
-					paginated: setUsuariosFilter(null, res.data),
-				};
+		if (res.error) {
+			setAlert(res.error, 'danger');
+		} else {
+			let params = {
+				init: res.data,
+				paginated: setUsuariosFilter(null, res.data),
+			};
 
-				dispatch({
-					type: SET_USUARIOS,
-					payload: params,
-				});
-			}
+			dispatch({
+				type: SET_USUARIOS,
+				payload: params,
+			});
 		}
 		cancelLoading();
 	};
