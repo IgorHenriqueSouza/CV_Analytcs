@@ -64,7 +64,7 @@ const VagaForm = ({ readOnly }) => {
 						<div class='row'>
 							<div class='col-sm-2 offset-md-10'>
 								<button type='submit' class='btn btn-secondary btn-block'>
-									Entrar
+									Confirmar
 								</button>
 							</div>
 						</div>
