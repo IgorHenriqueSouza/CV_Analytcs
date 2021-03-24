@@ -13,6 +13,7 @@ const VagaForm = ({ readOnly, isNew }) => {
 		updateVaga,
 		addSkill,
 		removeSkill,
+		// resetVaga,
 	} = recrutadorContext;
 
 	const handleInputChange = e => {
@@ -178,9 +179,9 @@ const VagaForm = ({ readOnly, isNew }) => {
 	return (
 		<div class='container main-container rounded shadow p-5'>
 			<div class='col'>
-				<h1 class=''>Erro</h1>
+				<h1 class=''>Vaga</h1>
 
-				<p class='lead'>URL Inválida.</p>
+				<p class='lead'>Visualizar e/ou editar informações da vaga.</p>
 			</div>
 		</div>
 	);

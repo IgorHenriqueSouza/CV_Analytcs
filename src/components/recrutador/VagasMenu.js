@@ -4,7 +4,7 @@ import RecrutadorContext from '../../context/recrutador/recrutadorContext.js';
 import ApplicationContext from '../../context/application/applicationContext.js';
 import Input from '../form/Input.js';
 
-const VagasMenu = ({ results }) => {
+const VagasMenu = ({ isResults }) => {
 	const recrutadorContext = useContext(RecrutadorContext);
 	const {
 		vagas,
@@ -16,7 +16,7 @@ const VagasMenu = ({ results }) => {
 		setVagasPage,
 	} = recrutadorContext;
 
-	console.log(results);
+	console.log(isResults);
 
 	const handleChange = event => {
 		setVagasFilter(event.target.value);
@@ -32,7 +32,7 @@ const VagasMenu = ({ results }) => {
 				<div class='col-sm-8'>
 					<h1 class=''>Vagas</h1>
 					<p class='lead'>
-						Aqui você pode gerenciar as vagas disponíveis na aplicação.
+						Aqui você pode visualizar as vagas disponíveis na aplicação.
 					</p>
 				</div>
 				<div class='col-sm-3'>
@@ -43,12 +43,14 @@ const VagasMenu = ({ results }) => {
 						onChange={handleChange}
 					/>
 				</div>
-				<div class='col-sm-1'>
-					<br />
-					<Link to='/vaga/null/new' className='btn btn-primary btn-block'>
-						+
-					</Link>
-				</div>
+				{!isResults && (
+					<div class='col-sm-1'>
+						<br />
+						<Link to='/vaga/null/new' className='btn btn-primary btn-block'>
+							+
+						</Link>
+					</div>
+				)}
 			</div>
 			<table class='table table-hover'>
 				<thead class='thead-dark'>
@@ -61,11 +63,11 @@ const VagasMenu = ({ results }) => {
 				</thead>
 				<tbody>
 					{vagas.map(x => {
-						let url = !results
+						let url = isResults
 							? '../resultado/' + x.id + ''
 							: '../vaga/' + x.id + '/true';
 
-						let text = !results ? 'Ver Resultado' : 'Editar';
+						let text = isResults ? 'Ver Resultado' : 'Editar';
 						return (
 							<tr>
 								<th>{x.local}</th>
