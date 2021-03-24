@@ -16,11 +16,13 @@ const Vaga = ({ match }) => {
 	const { getVagaData } = recrutadorContext;
 
 	const readOnly = match.params.edit === 'true' ? false : true;
+	const isNew = match.params.edit === 'new' ? true : false;
 
 	useEffect(() => {
 		validateUserType(['recrutador']);
 
-		getVagaData(match.params.id);
+		if (match.params.id && match.params.id !== 'null')
+			getVagaData(match.params.id);
 	}, []);
 
 	if (!isLoggedAndValidUser) return <Redirect to='/' />;
@@ -28,7 +30,7 @@ const Vaga = ({ match }) => {
 		return (
 			<div class='container-fluid main-padding'>
 				<Navbar />
-				<VagaForm readOnly={readOnly} />
+				<VagaForm readOnly={readOnly} isNew={isNew} />
 				<Background type='divisor' />
 			</div>
 		);

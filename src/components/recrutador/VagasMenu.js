@@ -35,13 +35,19 @@ const VagasMenu = ({ results }) => {
 						Aqui você pode gerenciar as vagas disponíveis na aplicação.
 					</p>
 				</div>
-				<div class='col-sm-4'>
+				<div class='col-sm-3'>
 					<Input
 						name='filter'
 						placeholder='Filtro...'
 						value={vagasFilter}
 						onChange={handleChange}
 					/>
+				</div>
+				<div class='col-sm-1'>
+					<br />
+					<Link to='/vaga/null/new' className='btn btn-primary btn-block'>
+						+
+					</Link>
 				</div>
 			</div>
 			<table class='table table-hover'>

@@ -7,6 +7,7 @@ import {
 	FILTER_USUARIOS,
 	SET_USUARIOS_PAGE,
 	SET_USUARIO_DETALHADO,
+	CHANGE_VAGA_SKILL,
 } from '../types';
 
 export default (state, action) => {
@@ -32,6 +33,11 @@ export default (state, action) => {
 				...state,
 				vagasFilter: action.payload.filter,
 				vagas: action.payload.vagas,
+			};
+		case CHANGE_VAGA_SKILL:
+			return {
+				...state,
+				vagas: action.payload,
 			};
 		case SET_USUARIO_DETALHADO:
 			return {

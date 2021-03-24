@@ -14,6 +14,7 @@ import {
 	FILTER_USUARIOS,
 	SET_USUARIOS_PAGE,
 	SET_USUARIO_DETALHADO,
+	CHANGE_VAGA_SKILL,
 } from '../types';
 
 const RecrutadorState = props => {
@@ -27,7 +28,8 @@ const RecrutadorState = props => {
 			id: null,
 			nome: null,
 			descricao: null,
-			local: null,
+			local: 'SP - São Paulo',
+			parametros: [{ skill: null, nivel: null }],
 		},
 		usuarioDetailed: {},
 		usuariosInit: [],
@@ -166,6 +168,25 @@ const RecrutadorState = props => {
 		cancelLoading();
 	};
 
+	//Add Vaga Skill
+	const addSkill = async () => {
+		state.vaga.parametros.push({ skill: null, nivel: null });
+
+		dispatch({
+			type: CHANGE_VAGA_SKILL,
+			payload: state.vaga,
+		});
+	};
+
+	//Remove Vaga Skill
+	const removeSkill = async () => {
+		state.vaga.parametros.splice(-1, 1);
+
+		dispatch({
+			type: CHANGE_VAGA_SKILL,
+			payload: state.vaga,
+		});
+	};
 	//----------------------------------------------------------------------------------------------------------------
 	//USUARIOS
 
@@ -303,6 +324,8 @@ const RecrutadorState = props => {
 				getVagaData: getVagaData,
 				setVagaData: setVagaData,
 				updateVaga: updateVaga,
+				addSkill: addSkill,
+				removeSkill: removeSkill,
 
 				//Usuario
 				usuarios: state.usuarios,

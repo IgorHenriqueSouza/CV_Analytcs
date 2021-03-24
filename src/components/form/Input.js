@@ -2,7 +2,7 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import PropTypes from 'prop-types';
 
-const Input = ({ label, name, ...rest }) => {
+const Input = ({ label, name, hideFirst = false, ...rest }) => {
 	if (rest.mask)
 		return (
 			<div className='form-group'>
@@ -15,7 +15,7 @@ const Input = ({ label, name, ...rest }) => {
 			<div className='form-group'>
 				<label htmlFor={name}>{label}</label>
 				<select className='form-control' id={name} name={name} {...rest}>
-					<option value=''></option>
+					{hideFirst === true ? null : <option value=''></option>}
 					{rest.options.map(opt => (
 						<option value={opt.value}>{opt.label ?? opt.value}</option>
 					))}
