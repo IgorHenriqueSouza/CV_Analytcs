@@ -13,7 +13,7 @@ const Vaga = ({ match }) => {
 	const { validateUserType, isLoggedAndValidUser } = appContext;
 
 	const recrutadorContext = useContext(RecrutadorContext);
-	const { getVagaData } = recrutadorContext;
+	const { getVagaData, setVagaData } = recrutadorContext;
 
 	const readOnly = match.params.edit === 'true' ? false : true;
 	const isNew = match.params.edit === 'new' ? true : false;
@@ -23,6 +23,15 @@ const Vaga = ({ match }) => {
 
 		if (match.params.id && match.params.id !== 'null')
 			getVagaData(match.params.id);
+		else {
+			setVagaData({
+				id: null,
+				nome: null,
+				descricao: null,
+				local: 'SP - São Paulo',
+				parametros: [{ skill: null, nivel: null }],
+			});
+		}
 	}, []);
 
 	if (!isLoggedAndValidUser) return <Redirect to='/' />;

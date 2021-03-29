@@ -56,24 +56,26 @@ const RecrutadorState = props => {
 	//Vagas
 
 	// Listar vagas do servidor
-	const fetchVagas = async () => {
+	const fetchVagas = () => {
+		console.log('fethcing vagas');
 		setLoading();
 		//if (!state.vagasInit || state.vagasInit.length === 0) {
-		const res = await Get(`${apiURL}/vagas`, { token: token });
+		Get(`${apiURL}/vagas`, { token: token }).then(res => {
+			if (res.error) {
+				setAlert(res.error, 'danger');
+			} else {
+				let params = {
+					init: res.data,
+					paginated: setVagasFilter(null, res.data),
+				};
 
-		if (res.error) {
-			setAlert(res.error, 'danger');
-		} else {
-			let params = {
-				init: res.data,
-				paginated: setVagasFilter(null, res.data),
-			};
+				dispatch({
+					type: SET_VAGAS,
+					payload: params,
+				});
+			}
+		});
 
-			dispatch({
-				type: SET_VAGAS,
-				payload: params,
-			});
-		}
 		//}
 		cancelLoading();
 	};
