@@ -18,7 +18,13 @@ const CandidatoState = props => {
 	const initialState = {
 		preQuestionarioDone: null,
 		provaDone: null,
-		preQuestionario: { anos: null, bd: null, js: null, scrum: null, php: null },
+		preQuestionario: {
+			xp: null,
+			sql: null,
+			javascript: null,
+			agile: null,
+			php: null,
+		},
 		prova: {
 			id1: null,
 			id2: null,
@@ -50,7 +56,7 @@ const CandidatoState = props => {
 
 		if (res.error) {
 			setAlert(res.error, 'danger');
-		} else {
+		} else if (res.data.result) {
 			setAlert(
 				'Pré cadastro concluído anteriormente com sucesso! Por favor prossiga para a prova.',
 				'primary'

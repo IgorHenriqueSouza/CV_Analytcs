@@ -1,5 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+
 import Input from '../form/Input';
 import {
 	BrowserRouter as Router,
@@ -12,7 +16,33 @@ import {
 import CandidatoContext from '../../context/candidato/candidatoContext';
 import ApplicationContext from '../../context/application/applicationContext';
 
+const useStyles = makeStyles(theme => ({
+	root: {
+		width: '80%',
+		paddingLeft: '20%',
+	},
+	margin: {
+		height: theme.spacing(3),
+	},
+}));
+
+const marks = [
+	{
+		value: 0,
+		label: 'Baixo',
+	},
+	{
+		value: 50,
+		label: 'Médio',
+	},
+	{
+		value: 100,
+		label: 'Alto',
+	},
+];
+
 const PreQuestionarioForm = ({ type }) => {
+	const classes = useStyles();
 	const appContext = useContext(ApplicationContext);
 	const {} = appContext;
 
@@ -24,15 +54,16 @@ const PreQuestionarioForm = ({ type }) => {
 		sendPreQuestionario,
 	} = candidatoContext;
 
-	const handleInputChange = e => {
-		const target = e.target;
-
-		// Id pq apenas selects
-		const value = target.type === 'checkbox' ? target.checked : target.value;
-		const name = target.name;
+	const handleInputChange = (val, name) => {
+		let mapping = {
+			0: 'Básico',
+			50: 'Intermediário',
+			100: 'Avançado',
+		};
+		val = mapping[val];
 
 		let previous = JSON.parse(JSON.stringify(preQuestionario));
-		previous[name] = value;
+		previous[name] = val;
 
 		setPreQuestionario(previous, type);
 	};
@@ -51,8 +82,8 @@ const PreQuestionarioForm = ({ type }) => {
 				<div class='col'>
 					<h1 class=''>Pré Cadastro</h1>
 					<p class='lead'>
-						Olá candidato, preencha todos os dados a seguir para dar
-						continuidade ao processo.
+						Olá candidato, informe os dados a seguir para dar continuidade ao
+						processo.
 					</p>
 				</div>
 			</div>
@@ -64,45 +95,48 @@ const PreQuestionarioForm = ({ type }) => {
 					<div class='row'>
 						<div class='col-sm-12'>
 							{Object.keys(preQuestionario).map(x => {
-								let parser = {
-									anos:
-										'Quantos anos de experiência você tem na sua área de atuação?',
-									js:
-										'Qual a sua familiaridade com a linguagem de programação JavaScript?',
-									bd:
-										'Qual seu nível de conhecimento em relação a banco de dados?',
-									scrum:
-										'Qual a sua familiaridade com o framework ágil denominado "Scrum"?',
-									php:
-										'Qual seu nível de conhecimento com a linguagem de programação PHP?',
+								let aditional = {
+									xp: {
+										title: 'Anos de experiência no mercado de trabalho',
+										marks: [
+											{
+												value: 0,
+												label: '0-2',
+											},
+											{
+												value: 50,
+												label: '3-6',
+											},
+											{
+												value: 100,
+												label: '6+',
+											},
+										],
+									},
+									sql: { title: 'Nível de familiaridade com SQL.' },
+									javascript: { title: 'Nível de familiaridade com JS.' },
+									agile: { title: 'Nível de familiaridade com Agile.' },
+									php: { title: 'Nível de familiaridade com PHP.' },
 								};
 
-								let parserOptions =
-									x == 'anos'
-										? [
-												{ id: 1, value: '1 ano' },
-												{ id: 2, value: '2 anos' },
-												{ id: 3, value: '3 anos' },
-												{ id: 4, value: '4 anos ou mais' },
-										  ]
-										: [
-												{ id: 'Básico', value: 'Básico' },
-												{ id: 'Avançado', value: 'Avançado' },
-												{ id: 'Intermediário', value: 'Intermediário' },
-										  ];
-
-								return x == 'id' ? null : (
-									<div class='row'>
-										<div class='col-sm-12'>
-											<Input
-												name={x}
-												label={parser[x]}
-												value={preQuestionario[x]}
-												options={parserOptions}
-												onChange={handleInputChange}
-												required
-											/>
-										</div>
+								return (
+									<div className={classes.root}>
+										<Typography id='discrete-slider-custom' gutterBottom>
+											{aditional[x].title}
+										</Typography>
+										<Slider
+											id={x}
+											defaultValue={0}
+											aria-labelledby='discrete-slider-custom'
+											step={50}
+											valueLabelDisplay='off'
+											marks={aditional[x].marks ?? marks}
+											onChange={(e, val) => {
+												handleInputChange(val, x);
+											}}
+										/>
+										<br />
+										<br />
 									</div>
 								);
 							})}

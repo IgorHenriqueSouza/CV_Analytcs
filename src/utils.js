@@ -9,6 +9,8 @@ export const ValidateForm = obj => {
 	}
 
 	for (let key of keys) {
+		if (!obj || !obj[key]) return false;
+
 		let val = obj[key].trim();
 
 		if (!(val && val !== '')) {
