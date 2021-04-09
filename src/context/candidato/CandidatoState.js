@@ -25,18 +25,7 @@ const CandidatoState = props => {
 			agile: null,
 			php: null,
 		},
-		prova: {
-			id1: null,
-			id2: null,
-			id3: null,
-			id4: null,
-			id5: null,
-			id6: null,
-			id7: null,
-			id8: null,
-			id9: null,
-			id10: null,
-		},
+		prova: null,
 	};
 
 	const [state, dispatch] = useReducer(CandidatoReducer, initialState);
@@ -46,6 +35,29 @@ const CandidatoState = props => {
 
 	const alertContext = useContext(AlertContext);
 	const { setAlert } = alertContext;
+
+	const setProvaData = async () => {
+		setLoading();
+
+		const res = await Get(`${apiURL}/prova/questoes`, {
+			token: token,
+		});
+
+		if (res.error) {
+			setAlert(res.error, 'danger');
+		} else if (res.data) {
+			let parsed = res.data.map(x => {
+				let replace = x.opcoes.replace(/'/g, '"');
+				x.opcoes = JSON.parse(replace);
+
+				return x;
+			});
+
+			setProva(parsed);
+		}
+
+		cancelLoading();
+	};
 
 	const setPreQuestionarioStatus = async () => {
 		setLoading();
@@ -175,6 +187,7 @@ const CandidatoState = props => {
 				sendProva: sendProva,
 				setProva: setProva,
 				prova: state.prova,
+				setProvaData: setProvaData,
 			}}
 		>
 			{props.children}
